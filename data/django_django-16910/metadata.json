@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-16910",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "4142739af1cda53581af4169dbe16d6cd5e26948",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16910\\apply_patch.log",
+  "problem_statement": "QuerySet.only() doesn't work with select_related() on a reverse OneToOneField relation.\nDescription\n\t\nOn Django 4.2 calling only() with select_related() on a query using the reverse lookup for a OneToOne relation does not generate the correct query.\nAll the fields from the related model are still included in the generated SQL.\nSample models:\nclass Main(models.Model):\n\tmain_field_1 = models.CharField(blank=True, max_length=45)\n\tmain_field_2 = models.CharField(blank=True, max_length=45)\n\tmain_field_3 = models.CharField(blank=True, max_length=45)\nclass Secondary(models.Model):\n\tmain = models.OneToOneField(Main, primary_key=True, related_name='secondary', on_delete=models.CASCADE)\n\tsecondary_field_1 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_2 = models.CharField(blank=True, max_length=45)\n\tsecondary_field_3 = models.CharField(blank=True, max_length=45)\nSample code:\nMain.objects.select_related('secondary').only('main_field_1', 'secondary__secondary_field_1')\nGenerated query on Django 4.2.1:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\", \"bugtest_secondary\".\"secondary_field_2\", \"bugtest_secondary\".\"secondary_field_3\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\nGenerated query on Django 4.1.9:\nSELECT \"bugtest_main\".\"id\", \"bugtest_main\".\"main_field_1\", \"bugtest_secondary\".\"main_id\", \"bugtest_secondary\".\"secondary_field_1\" FROM \"bugtest_main\" LEFT OUTER JOIN \"bugtest_secondary\" ON (\"bugtest_main\".\"id\" = \"bugtest_secondary\".\"main_id\")\n",
+  "changed_files": "[\"django/db/models/sql/query.py\"]",
+  "original_files_saved": "[\"django/db/models/sql/query.py\"]",
+  "patched_files_saved": "[\"django/db/models/sql/query.py\"]",
+  "status": "applied"
+}

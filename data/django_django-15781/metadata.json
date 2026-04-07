@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-15781",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "8d160f154f0240a423e83ffe0690e472f837373c",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15781\\apply_patch.log",
+  "problem_statement": "Customizable management command formatters.\nDescription\n\t\nWith code like:\nclass Command(BaseCommand):\n\thelp = '''\n\tImport a contract from tzkt.\n\tExample usage:\n\t\t./manage.py tzkt_import 'Tezos Mainnet' KT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\n\t'''\nHelp output is:\n$ ./manage.py help tzkt_import\nusage: manage.py tzkt_import [-h] [--api API] [--version] [-v {0,1,2,3}] [--settings SETTINGS]\n\t\t\t\t\t\t\t [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]\n\t\t\t\t\t\t\t [--skip-checks]\n\t\t\t\t\t\t\t blockchain target\nImport a contract from tzkt Example usage: ./manage.py tzkt_import 'Tezos Mainnet'\nKT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\npositional arguments:\n blockchain\t\t\tName of the blockchain to import into\n target\t\t\t\tId of the contract to import\nWhen that was expected:\n$ ./manage.py help tzkt_import\nusage: manage.py tzkt_import [-h] [--api API] [--version] [-v {0,1,2,3}] [--settings SETTINGS]\n\t\t\t\t\t\t\t [--pythonpath PYTHONPATH] [--traceback] [--no-color] [--force-color]\n\t\t\t\t\t\t\t [--skip-checks]\n\t\t\t\t\t\t\t blockchain target\nImport a contract from tzkt \nExample usage: \n\t./manage.py tzkt_import 'Tezos Mainnet' KT1HTDtMBRCKoNHjfWEEvXneGQpCfPAt6BRe\npositional arguments:\n blockchain\t\t\tName of the blockchain to import into\n target\t\t\t\tId of the contract to import\n",
+  "changed_files": "[\"django/core/management/base.py\"]",
+  "original_files_saved": "[\"django/core/management/base.py\"]",
+  "patched_files_saved": "[\"django/core/management/base.py\"]",
+  "status": "applied"
+}

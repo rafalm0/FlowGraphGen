@@ -1,0 +1,17 @@
+{
+  "instance_id": "sphinx-doc__sphinx-8506",
+  "repo": "sphinx-doc/sphinx",
+  "repo_url": "https://github.com/sphinx-doc/sphinx.git",
+  "base_commit": "e4bd3bd3ddd42c6642ff779a4f7381f219655c2c",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-8506\\apply_patch.log",
+  "problem_statement": "Sphinx 3.2 complains about option:: syntax that earlier versions accepted\nSphinx 3.2 complains about use of the option:: directive that earlier versions accepted without complaint.\r\n\r\nThe QEMU documentation includes this:\r\n```\r\n.. option:: [enable=]PATTERN\r\n\r\n   Immediately enable events matching *PATTERN*\r\n```\r\n\r\nas part of the documentation of the command line options of one of its programs. Earlier versions of Sphinx were fine with this, but Sphinx 3.2 complains:\r\n\r\n```\r\nWarning, treated as error:\r\n../../docs/qemu-option-trace.rst.inc:4:Malformed option description '[enable=]PATTERN', should look like \"opt\", \"-opt args\", \"--opt args\", \"/opt args\" or \"+opt args\"\r\n```\r\n\r\nSphinx ideally shouldn't change in ways that break the building of documentation that worked in older versions, because this makes it unworkably difficult to have documentation that builds with whatever the Linux distro's sphinx-build is.\r\n\r\nThe error message suggests that Sphinx has a very restrictive idea of what option syntax is; it would be better if it just accepted any string, because not all programs and OSes have option syntax that matches the limited list the error message indicates.\r\n\n",
+  "changed_files": "[\"sphinx/domains/std.py\"]",
+  "original_files_saved": "[\"sphinx/domains/std.py\"]",
+  "patched_files_saved": "[\"sphinx/domains/std.py\"]",
+  "status": "applied"
+}

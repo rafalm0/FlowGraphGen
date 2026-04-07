@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-15400",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "4c76ffc2d6c77c850b4bef8d9acc197d11c47937",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15400\\apply_patch.log",
+  "problem_statement": "SimpleLazyObject doesn't implement __radd__\nDescription\n\t\nTechnically, there's a whole bunch of magic methods it doesn't implement, compared to a complete proxy implementation, like that of wrapt.ObjectProxy, but __radd__ being missing is the one that's biting me at the moment.\nAs far as I can tell, the implementation can't just be\n__radd__ = new_method_proxy(operator.radd)\nbecause that doesn't exist, which is rubbish.\n__radd__ = new_method_proxy(operator.attrgetter(\"__radd__\"))\nalso won't work because types may not have that attr, and attrgetter doesn't supress the exception (correctly)\nThe minimal implementation I've found that works for me is:\n\tdef __radd__(self, other):\n\t\tif self._wrapped is empty:\n\t\t\tself._setup()\n\t\treturn other + self._wrapped\n",
+  "changed_files": "[\"django/utils/functional.py\"]",
+  "original_files_saved": "[\"django/utils/functional.py\"]",
+  "patched_files_saved": "[\"django/utils/functional.py\"]",
+  "status": "applied"
+}

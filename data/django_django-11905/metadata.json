@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-11905",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "2f72480fbd27896c986c45193e1603e35c0b19a7",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11905\\apply_patch.log",
+  "problem_statement": "Prevent using __isnull lookup with non-boolean value.\nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \n__isnull should not allow for non-boolean values. Using truthy/falsey doesn't promote INNER JOIN to an OUTER JOIN but works fine for a simple queries. Using non-boolean values is ​undocumented and untested. IMO we should raise an error for non-boolean values to avoid confusion and for consistency.\n",
+  "changed_files": "[\"django/db/models/lookups.py\"]",
+  "original_files_saved": "[\"django/db/models/lookups.py\"]",
+  "patched_files_saved": "[\"django/db/models/lookups.py\"]",
+  "status": "applied"
+}

@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-15308",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "fb59d703e6863ed803c98177b59197b5513332e9",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15308\\apply_patch.log",
+  "problem_statement": "LaTeX printing for Matrix Expression\n```py\r\n>>> A = MatrixSymbol(\"A\", n, n)\r\n>>> latex(trace(A**2))\r\n'Trace(A**2)'\r\n```\r\n\r\nThe bad part is not only is Trace not recognized, but whatever printer is being used doesn't fallback to the LaTeX printer for the inner expression (it should be `A^2`). \n",
+  "changed_files": "[\"sympy/printing/latex.py\"]",
+  "original_files_saved": "[\"sympy/printing/latex.py\"]",
+  "patched_files_saved": "[\"sympy/printing/latex.py\"]",
+  "status": "applied"
+}

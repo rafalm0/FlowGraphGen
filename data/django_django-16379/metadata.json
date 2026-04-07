@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-16379",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "1d0fa848e084cad62d0bb6bde3b51e4862558e57",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16379\\apply_patch.log",
+  "problem_statement": "FileBasedCache has_key is susceptible to race conditions\nDescription\n\t \n\t\t(last modified by Marti Raudsepp)\n\t \nI received the exception from Django's cache framework:\nFileNotFoundError: [Errno 2] No such file or directory: '/app/var/cache/d729e4cf4ba88cba5a0f48e0396ec48a.djcache'\n[...]\n File \"django/core/cache/backends/base.py\", line 229, in get_or_set\n\tself.add(key, default, timeout=timeout, version=version)\n File \"django/core/cache/backends/filebased.py\", line 26, in add\n\tif self.has_key(key, version):\n File \"django/core/cache/backends/filebased.py\", line 94, in has_key\n\twith open(fname, \"rb\") as f:\nThe code is:\n\tdef has_key(self, key, version=None):\n\t\tfname = self._key_to_file(key, version)\n\t\tif os.path.exists(fname):\n\t\t\twith open(fname, \"rb\") as f:\n\t\t\t\treturn not self._is_expired(f)\n\t\treturn False\nBetween the exists() check and open(), it's possible for the file to be deleted. In fact, the _is_expired() method itself deletes the file if it finds it to be expired. So if many threads race to read an expired cache at once, it's not that unlikely to hit this window.\n",
+  "changed_files": "[\"django/core/cache/backends/filebased.py\"]",
+  "original_files_saved": "[\"django/core/cache/backends/filebased.py\"]",
+  "patched_files_saved": "[\"django/core/cache/backends/filebased.py\"]",
+  "status": "applied"
+}

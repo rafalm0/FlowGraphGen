@@ -1,0 +1,17 @@
+{
+  "instance_id": "pylint-dev__pylint-5859",
+  "repo": "pylint-dev/pylint",
+  "repo_url": "https://github.com/pylint-dev/pylint.git",
+  "base_commit": "182cc539b8154c0710fcea7e522267e42eba8899",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_pylint-5859\\apply_patch.log",
+  "problem_statement": "\"--notes\" option ignores note tags that are entirely punctuation\n### Bug description\n\nIf a note tag specified with the `--notes` option is entirely punctuation, pylint won't report a fixme warning (W0511).\r\n\r\n```python\r\n# YES: yes\r\n# ???: no\r\n```\r\n\r\n`pylint test.py --notes=\"YES,???\"` will return a fixme warning (W0511) for the first line, but not the second.\n\n### Configuration\n\n```ini\nDefault\n```\n\n\n### Command used\n\n```shell\npylint test.py --notes=\"YES,???\"\n```\n\n\n### Pylint output\n\n```shell\n************* Module test\r\ntest.py:1:1: W0511: YES: yes (fixme)\n```\n\n\n### Expected behavior\n\n```\r\n************* Module test\r\ntest.py:1:1: W0511: YES: yes (fixme)\r\ntest.py:2:1: W0511: ???: no (fixme)\r\n```\n\n### Pylint version\n\n```shell\npylint 2.12.2\r\nastroid 2.9.0\r\nPython 3.10.2 (main, Feb  2 2022, 05:51:25) [Clang 13.0.0 (clang-1300.0.29.3)]\n```\n\n\n### OS / Environment\n\nmacOS 11.6.1\n\n### Additional dependencies\n\n_No response_\n",
+  "changed_files": "[\"pylint/checkers/misc.py\"]",
+  "original_files_saved": "[\"pylint/checkers/misc.py\"]",
+  "patched_files_saved": "[\"pylint/checkers/misc.py\"]",
+  "status": "applied"
+}

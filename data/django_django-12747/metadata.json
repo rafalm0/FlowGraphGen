@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-12747",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "c86201b6ed4f8256b0a0520c08aa674f623d4127",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12747\\apply_patch.log",
+  "problem_statement": "QuerySet.Delete - inconsistent result when zero objects deleted\nDescription\n\t\nThe result format of the QuerySet.Delete method is a tuple: (X, Y) \nX - is the total amount of deleted objects (including foreign key deleted objects)\nY - is a dictionary specifying counters of deleted objects for each specific model (the key is the _meta.label of the model and the value is counter of deleted objects of this model).\nExample: <class 'tuple'>: (2, {'my_app.FileAccess': 1, 'my_app.File': 1})\nWhen there are zero objects to delete in total - the result is inconsistent:\nFor models with foreign keys - the result will be: <class 'tuple'>: (0, {})\nFor \"simple\" models without foreign key - the result will be: <class 'tuple'>: (0, {'my_app.BlockLibrary': 0})\nI would expect there will be no difference between the two cases: Either both will have the empty dictionary OR both will have dictionary with model-label keys and zero value.\n",
+  "changed_files": "[\"django/db/models/deletion.py\"]",
+  "original_files_saved": "[\"django/db/models/deletion.py\"]",
+  "patched_files_saved": "[\"django/db/models/deletion.py\"]",
+  "status": "applied"
+}

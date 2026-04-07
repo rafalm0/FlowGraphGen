@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-11742",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "fee75d2aed4e58ada6567c464cfd22e89dc65f4a",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11742\\apply_patch.log",
+  "problem_statement": "Add check to ensure max_length fits longest choice.\nDescription\n\t\nThere is currently no check to ensure that Field.max_length is large enough to fit the longest value in Field.choices.\nThis would be very helpful as often this mistake is not noticed until an attempt is made to save a record with those values that are too long.\n",
+  "changed_files": "[\"django/db/models/fields/__init__.py\"]",
+  "original_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "patched_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "status": "applied"
+}

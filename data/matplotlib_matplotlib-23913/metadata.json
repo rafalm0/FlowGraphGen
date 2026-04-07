@@ -1,0 +1,17 @@
+{
+  "instance_id": "matplotlib__matplotlib-23913",
+  "repo": "matplotlib/matplotlib",
+  "repo_url": "https://github.com/matplotlib/matplotlib.git",
+  "base_commit": "5c4595267ccd3daf78f5fd05693b7ecbcd575c1e",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-23913\\apply_patch.log",
+  "problem_statement": "legend draggable as keyword\n<!--To help us understand and resolve your issue, please fill out the form to the best of your ability.-->\r\n<!--You can feel free to delete the sections that do not apply.-->\r\n\r\n### Feature request\r\n\r\n**There is not keyword to make legend draggable at creation**\r\n\r\n<!--A short 1-2 sentences that succinctly describes the bug-->\r\n\r\nIs there a code reason why one can not add a \"draggable=True\" keyword to the __init__ function for Legend?  This would be more handy than having to call it after legend creation.  And, naively, it would seem simple to do.  But maybe there is a reason why it would not work?\n",
+  "changed_files": "[\"lib/matplotlib/legend.py\"]",
+  "original_files_saved": "[\"lib/matplotlib/legend.py\"]",
+  "patched_files_saved": "[\"lib/matplotlib/legend.py\"]",
+  "status": "applied"
+}

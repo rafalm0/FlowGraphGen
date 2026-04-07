@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-14317",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "fb536869fb7aa28b2695ad7a3b70949926b291c4",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-14317\\apply_patch.log",
+  "problem_statement": "LaTeX printer does not use the same order of monomials as pretty and str \nWhen printing a Poly, the str and pretty printers use the logical order of monomials, from highest to lowest degrees. But latex printer does not. \r\n```\r\n>>> var('a b c x')\r\n>>> p = Poly([a, 1, b, 2, c, 3], x)\r\n>>> p\r\nPoly(a*x**5 + x**4 + b*x**3 + 2*x**2 + c*x + 3, x, domain='ZZ[a,b,c]')\r\n>>> pretty(p)\r\n\"Poly(a*x**5 + x**4 + b*x**3 + 2*x**2 + c*x + 3, x, domain='ZZ[a,b,c]')\"\r\n>>> latex(p)\r\n'\\\\operatorname{Poly}{\\\\left( a x^{5} + b x^{3} + c x + x^{4} + 2 x^{2} + 3, x, domain=\\\\mathbb{Z}\\\\left[a, b, c\\\\right] \\\\right)}'\r\n```\n",
+  "changed_files": "[\"sympy/printing/latex.py\"]",
+  "original_files_saved": "[\"sympy/printing/latex.py\"]",
+  "patched_files_saved": "[\"sympy/printing/latex.py\"]",
+  "status": "applied"
+}

@@ -1,0 +1,17 @@
+{
+  "instance_id": "mwaskom__seaborn-2848",
+  "repo": "mwaskom/seaborn",
+  "repo_url": "https://github.com/mwaskom/seaborn.git",
+  "base_commit": "94621cef29f80282436d73e8d2c0aa76dab81273",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\mwaskom_seaborn-2848\\apply_patch.log",
+  "problem_statement": "pairplot fails with hue_order not containing all hue values in seaborn 0.11.1\nIn seaborn < 0.11, one could plot only a subset of the values in the hue column, by passing a hue_order list containing only the desired values. Points with hue values not in the list were simply not plotted.\n```python\niris = sns.load_dataset(\"iris\")`\n# The hue column contains three different species; here we want to plot two\nsns.pairplot(iris, hue=\"species\", hue_order=[\"setosa\", \"versicolor\"])\n```\n\nThis no longer works in 0.11.1. Passing a hue_order list that does not contain some of the values in the hue column raises a long, ugly error traceback. The first exception arises in seaborn/_core.py:\n```\nTypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''\n```\nseaborn version: 0.11.1\nmatplotlib version: 3.3.2\nmatplotlib backends: MacOSX, Agg or jupyter notebook inline.",
+  "changed_files": "[\"seaborn/_oldcore.py\"]",
+  "original_files_saved": "[\"seaborn/_oldcore.py\"]",
+  "patched_files_saved": "[\"seaborn/_oldcore.py\"]",
+  "status": "applied"
+}

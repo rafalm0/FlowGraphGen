@@ -1,0 +1,17 @@
+{
+  "instance_id": "pydata__xarray-3364",
+  "repo": "pydata/xarray",
+  "repo_url": "https://github.com/pydata/xarray.git",
+  "base_commit": "863e49066ca4d61c9adfe62aca3bf21b90e1af8c",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydata_xarray-3364\\apply_patch.log",
+  "problem_statement": "Ignore missing variables when concatenating datasets?\nSeveral users (@raj-kesavan, @richardotis, now myself) have wondered about how to concatenate xray Datasets with different variables.\n\nWith the current `xray.concat`, you need to awkwardly create dummy variables filled with `NaN` in datasets that don't have them (or drop mismatched variables entirely). Neither of these are great options -- `concat` should have an option (the default?) to take care of this for the user.\n\nThis would also be more consistent with `pd.concat`, which takes a more relaxed approach to matching dataframes with different variables (it does an outer join).\n\n",
+  "changed_files": "[\"xarray/core/concat.py\"]",
+  "original_files_saved": "[\"xarray/core/concat.py\"]",
+  "patched_files_saved": "[\"xarray/core/concat.py\"]",
+  "status": "applied"
+}

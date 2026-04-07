@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-15678",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "31c68eef3ffef39e2e792b0ec92cd92b7010eb2a",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-15678\\apply_patch.log",
+  "problem_statement": "Some issues with idiff\nidiff doesn't support Eq, and it also doesn't support f(x) instead of y. Both should be easy to correct.\r\n\r\n```\r\n>>> idiff(Eq(y*exp(y), x*exp(x)), y, x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 582, in idiff\r\n    yp = solve(eq.diff(x), dydx)[0].subs(derivs)\r\nIndexError: list index out of range\r\n>>> idiff(f(x)*exp(f(x)) - x*exp(x), f(x), x)\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"./sympy/geometry/util.py\", line 574, in idiff\r\n    raise ValueError(\"expecting x-dependent symbol(s) but got: %s\" % y)\r\nValueError: expecting x-dependent symbol(s) but got: f(x)\r\n>>> idiff(y*exp(y)- x*exp(x), y, x)\r\n(x + 1)*exp(x - y)/(y + 1)\r\n```\n",
+  "changed_files": "[\"sympy/geometry/util.py\"]",
+  "original_files_saved": "[\"sympy/geometry/util.py\"]",
+  "patched_files_saved": "[\"sympy/geometry/util.py\"]",
+  "status": "applied"
+}

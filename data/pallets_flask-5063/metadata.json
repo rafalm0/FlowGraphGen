@@ -1,0 +1,17 @@
+{
+  "instance_id": "pallets__flask-5063",
+  "repo": "pallets/flask",
+  "repo_url": "https://github.com/pallets/flask.git",
+  "base_commit": "182ce3dd15dfa3537391c3efaf9c3ff407d134d4",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pallets_flask-5063\\apply_patch.log",
+  "problem_statement": "Flask routes to return domain/sub-domains information\nCurrently when checking **flask routes** it provides all routes but **it is no way to see which routes are assigned to which subdomain**.\r\n\r\n**Default server name:**\r\nSERVER_NAME: 'test.local'\r\n\r\n**Domains (sub-domains):**\r\ntest.test.local\r\nadmin.test.local\r\ntest.local\r\n\r\n**Adding blueprints:**\r\napp.register_blueprint(admin_blueprint,url_prefix='',subdomain='admin')\r\napp.register_blueprint(test_subdomain_blueprint,url_prefix='',subdomain='test')\r\n\r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nEndpoint                                                 Methods    Rule\r\n-------------------------------------------------------  ---------  ------------------------------------------------\r\nadmin_blueprint.home                                      GET        /home\r\ntest_subdomain_blueprint.home                             GET        /home\r\nstatic                                                    GET        /static/<path:filename>\r\n...\r\n```\r\n\r\n\r\n**Feature request**\r\nIt will be good to see something like below (that will make more clear which route for which subdomain, because now need to go and check configuration).\r\n**If it is not possible to fix routes**, can you add or tell which method(s) should be used to get below information from flask? \r\n\r\n```\r\n$ flask routes\r\n * Tip: There are .env or .flaskenv files present. Do \"pip install python-dotenv\" to use them.\r\nDomain                Endpoint                                             Methods    Rule\r\n-----------------   ----------------------------------------------------  ----------  ------------------------------------------------\r\nadmin.test.local     admin_blueprint.home                                  GET        /home\r\ntest.test.local      test_subdomain_blueprint.home                         GET        /home\r\ntest.local           static                                                GET        /static/<path:filename>\r\n...\r\n```\r\n\n",
+  "changed_files": "[\"src/flask/cli.py\"]",
+  "original_files_saved": "[\"src/flask/cli.py\"]",
+  "patched_files_saved": "[\"src/flask/cli.py\"]",
+  "status": "applied"
+}

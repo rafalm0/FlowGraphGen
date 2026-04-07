@@ -1,0 +1,17 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13497",
+  "repo": "scikit-learn/scikit-learn",
+  "repo_url": "https://github.com/scikit-learn/scikit-learn.git",
+  "base_commit": "26f690961a52946dd2f53bf0fdd4264b2ae5be90",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-13497\\apply_patch.log",
+  "problem_statement": "Comparing string to array in _estimate_mi\nIn ``_estimate_mi`` there is ``discrete_features == 'auto'`` but discrete features can be an array of indices or a boolean mask.\r\nThis will error in future versions of numpy.\r\nAlso this means we never test this function with discrete features != 'auto', it seems?\n",
+  "changed_files": "[\"sklearn/feature_selection/mutual_info_.py\"]",
+  "original_files_saved": "[\"sklearn/feature_selection/mutual_info_.py\"]",
+  "patched_files_saved": "[\"sklearn/feature_selection/mutual_info_.py\"]",
+  "status": "applied"
+}

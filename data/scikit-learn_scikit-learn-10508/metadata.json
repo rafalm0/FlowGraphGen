@@ -1,0 +1,17 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-10508",
+  "repo": "scikit-learn/scikit-learn",
+  "repo_url": "https://github.com/scikit-learn/scikit-learn.git",
+  "base_commit": "c753b77ac49e72ebc0fe5e3c2369fe628f975017",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10508\\apply_patch.log",
+  "problem_statement": "LabelEncoder transform fails for empty lists (for certain inputs)\nPython 3.6.3, scikit_learn 0.19.1\r\n\r\nDepending on which datatypes were used to fit the LabelEncoder, transforming empty lists works or not. Expected behavior would be that empty arrays are returned in both cases.\r\n\r\n```python\r\n>>> from sklearn.preprocessing import LabelEncoder\r\n>>> le = LabelEncoder()\r\n>>> le.fit([1,2])\r\nLabelEncoder()\r\n>>> le.transform([])\r\narray([], dtype=int64)\r\n>>> le.fit([\"a\",\"b\"])\r\nLabelEncoder()\r\n>>> le.transform([])\r\nTraceback (most recent call last):\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 57, in _wrapfunc\r\n    return getattr(obj, method)(*args, **kwds)\r\nTypeError: Cannot cast array data from dtype('float64') to dtype('<U32') according to the rule 'safe'\r\n\r\nDuring handling of the above exception, another exception occurred:\r\n\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"[...]\\Python36\\lib\\site-packages\\sklearn\\preprocessing\\label.py\", line 134, in transform\r\n    return np.searchsorted(self.classes_, y)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 1075, in searchsorted\r\n    return _wrapfunc(a, 'searchsorted', v, side=side, sorter=sorter)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 67, in _wrapfunc\r\n    return _wrapit(obj, method, *args, **kwds)\r\n  File \"[...]\\Python36\\lib\\site-packages\\numpy\\core\\fromnumeric.py\", line 47, in _wrapit\r\n    result = getattr(asarray(obj), method)(*args, **kwds)\r\nTypeError: Cannot cast array data from dtype('float64') to dtype('<U32') according to the rule 'safe'\r\n```\n",
+  "changed_files": "[\"sklearn/preprocessing/label.py\"]",
+  "original_files_saved": "[\"sklearn/preprocessing/label.py\"]",
+  "patched_files_saved": "[\"sklearn/preprocessing/label.py\"]",
+  "status": "applied"
+}

@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-16820",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "c61219a7ae051d2baab53f041e00592011fc550c",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16820\\apply_patch.log",
+  "problem_statement": "Squashing migrations with Meta.index_together -> indexes transition should remove deprecation warnings.\nDescription\n\t\nSquashing migrations with Meta.index_together -> Meta.indexes transition should remove deprecation warnings. As far as I'm aware, it's a 4.2 release blocker because you cannot get rid of the index_together deprecation warnings without rewriting migrations, see comment.\n",
+  "changed_files": "[\"django/db/migrations/operations/models.py\"]",
+  "original_files_saved": "[\"django/db/migrations/operations/models.py\"]",
+  "patched_files_saved": "[\"django/db/migrations/operations/models.py\"]",
+  "status": "applied"
+}

@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-15498",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15498\\apply_patch.log",
+  "problem_statement": "Fix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\nFix handling empty string for If-Modified-Since header\nDescription\n\t\nEmpty string used to be ignored for If-Modified-Since header, but now raises exception since d6aff369ad3.\n",
+  "changed_files": "[\"django/views/static.py\"]",
+  "original_files_saved": "[\"django/views/static.py\"]",
+  "patched_files_saved": "[\"django/views/static.py\"]",
+  "status": "applied"
+}

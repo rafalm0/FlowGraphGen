@@ -1,0 +1,17 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-15535",
+  "repo": "scikit-learn/scikit-learn",
+  "repo_url": "https://github.com/scikit-learn/scikit-learn.git",
+  "base_commit": "70b0ddea992c01df1a41588fa9e2d130fb6b13f8",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-15535\\apply_patch.log",
+  "problem_statement": "regression in input validation of clustering metrics\n```python\r\nfrom sklearn.metrics.cluster import mutual_info_score\r\nimport numpy as np\r\n\r\nx = np.random.choice(['a', 'b'], size=20).astype(object)\r\nmutual_info_score(x, x)\r\n```\r\nValueError: could not convert string to float: 'b'\r\n\r\nwhile\r\n```python\r\nx = np.random.choice(['a', 'b'], size=20)\r\nmutual_info_score(x, x)\r\n```\r\nworks with a warning?\r\n\r\nthis worked in 0.21.1 without a warning (as I think it should)\r\n\r\n\r\nEdit by @ogrisel: I removed the `.astype(object)` in the second code snippet.\n",
+  "changed_files": "[\"sklearn/metrics/cluster/_supervised.py\"]",
+  "original_files_saved": "[\"sklearn/metrics/cluster/_supervised.py\"]",
+  "patched_files_saved": "[\"sklearn/metrics/cluster/_supervised.py\"]",
+  "status": "applied"
+}

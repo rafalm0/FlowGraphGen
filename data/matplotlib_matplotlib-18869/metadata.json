@@ -1,0 +1,17 @@
+{
+  "instance_id": "matplotlib__matplotlib-18869",
+  "repo": "matplotlib/matplotlib",
+  "repo_url": "https://github.com/matplotlib/matplotlib.git",
+  "base_commit": "b7d05919865fc0c37a0164cf467d5d5513bd0ede",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-18869\\apply_patch.log",
+  "problem_statement": "Add easily comparable version info to toplevel\n<!--\r\nWelcome! Thanks for thinking of a way to improve Matplotlib.\r\n\r\n\r\nBefore creating a new feature request please search the issues for relevant feature requests.\r\n-->\r\n\r\n### Problem\r\n\r\nCurrently matplotlib only exposes `__version__`.  For quick version checks, exposing either a `version_info` tuple (which can be compared with other tuples) or a `LooseVersion` instance (which can be properly compared with other strings) would be a small usability improvement.\r\n\r\n(In practice I guess boring string comparisons will work just fine until we hit mpl 3.10 or 4.10 which is unlikely to happen soon, but that feels quite dirty :))\r\n<!--\r\nProvide a clear and concise description of the problem this feature will solve. \r\n\r\nFor example:\r\n* I'm always frustrated when [...] because [...]\r\n* I would like it if [...] happened when I [...] because [...]\r\n* Here is a sample image of what I am asking for [...]\r\n-->\r\n\r\n### Proposed Solution\r\n\r\nI guess I slightly prefer `LooseVersion`, but exposing just a `version_info` tuple is much more common in other packages (and perhaps simpler to understand).  The hardest(?) part is probably just bikeshedding this point :-)\r\n<!-- Provide a clear and concise description of a way to accomplish what you want. For example:\r\n\r\n* Add an option so that when [...]  [...] will happen\r\n -->\r\n\r\n### Additional context and prior art\r\n\r\n`version_info` is a pretty common thing (citation needed).\r\n<!-- Add any other context or screenshots about the feature request here. You can also include links to examples of other programs that have something similar to your request. For example:\r\n\r\n* Another project [...] solved this by [...]\r\n-->\r\n\n",
+  "changed_files": "[\"lib/matplotlib/__init__.py\"]",
+  "original_files_saved": "[\"lib/matplotlib/__init__.py\"]",
+  "patched_files_saved": "[\"lib/matplotlib/__init__.py\"]",
+  "status": "applied"
+}

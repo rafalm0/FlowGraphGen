@@ -1,0 +1,17 @@
+{
+  "instance_id": "sphinx-doc__sphinx-10325",
+  "repo": "sphinx-doc/sphinx",
+  "repo_url": "https://github.com/sphinx-doc/sphinx.git",
+  "base_commit": "7bdc11e87c7d86dcc2a087eccb7a7c129a473415",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sphinx-doc_sphinx-10325\\apply_patch.log",
+  "problem_statement": "inherited-members should support more than one class\n**Is your feature request related to a problem? Please describe.**\r\nI have two situations:\r\n- A class inherits from multiple other classes. I want to document members from some of the base classes but ignore some of the base classes\r\n- A module contains several class definitions that inherit from different classes that should all be ignored (e.g., classes that inherit from list or set or tuple). I want to ignore members from list, set, and tuple while documenting all other inherited members in classes in the module.\r\n\r\n**Describe the solution you'd like**\r\nThe :inherited-members: option to automodule should accept a list of classes. If any of these classes are encountered as base classes when instantiating autoclass documentation, they should be ignored.\r\n\r\n**Describe alternatives you've considered**\r\nThe alternative is to not use automodule, but instead manually enumerate several autoclass blocks for a module. This only addresses the second bullet in the problem description and not the first. It is also tedious for modules containing many class definitions.\r\n\r\n\n",
+  "changed_files": "[\"sphinx/ext/autodoc/__init__.py\"]",
+  "original_files_saved": "[\"sphinx/ext/autodoc/__init__.py\"]",
+  "patched_files_saved": "[\"sphinx/ext/autodoc/__init__.py\"]",
+  "status": "applied"
+}

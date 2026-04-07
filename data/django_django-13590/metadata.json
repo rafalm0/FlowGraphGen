@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-13590",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-13590\\apply_patch.log",
+  "problem_statement": "Upgrading 2.2>3.0 causes named tuples used as arguments to __range to error.\nDescription\n\t\nI noticed this while upgrading a project from 2.2 to 3.0.\nThis project passes named 2-tuples as arguments to range queryset filters. This works fine on 2.2. On 3.0 it causes the following error: TypeError: __new__() missing 1 required positional argument: 'far'.\nThis happens because django.db.models.sql.query.Query.resolve_lookup_value goes into the tuple elements to resolve lookups and then attempts to reconstitute the tuple with the resolved elements.\nWhen it attempts to construct the new tuple it preserves the type (the named tuple) but it passes a iterator to it's constructor.\nNamedTuples don't have the code path for copying an iterator, and so it errors on insufficient arguments.\nThe fix is to * expand the contents of the iterator into the constructor.\n",
+  "changed_files": "[\"django/db/models/sql/query.py\"]",
+  "original_files_saved": "[\"django/db/models/sql/query.py\"]",
+  "patched_files_saved": "[\"django/db/models/sql/query.py\"]",
+  "status": "applied"
+}

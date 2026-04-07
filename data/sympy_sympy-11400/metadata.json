@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-11400",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "8dcb12a6cf500e8738d6729ab954a261758f49ca",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-11400\\apply_patch.log",
+  "problem_statement": "ccode(sinc(x)) doesn't work\n```\nIn [30]: ccode(sinc(x))\nOut[30]: '// Not supported in C:\\n// sinc\\nsinc(x)'\n```\n\nI don't think `math.h` has `sinc`, but it could print\n\n```\nIn [38]: ccode(Piecewise((sin(theta)/theta, Ne(theta, 0)), (1, True)))\nOut[38]: '((Ne(theta, 0)) ? (\\n   sin(theta)/theta\\n)\\n: (\\n   1\\n))'\n```\n\n",
+  "changed_files": "[\"sympy/printing/ccode.py\"]",
+  "original_files_saved": "[\"sympy/printing/ccode.py\"]",
+  "patched_files_saved": "[\"sympy/printing/ccode.py\"]",
+  "status": "applied"
+}

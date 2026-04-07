@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-18189",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "1923822ddf8265199dbd9ef9ce09641d3fd042b9",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18189\\apply_patch.log",
+  "problem_statement": "diophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\ndiophantine: incomplete results depending on syms order with permute=True\n```\r\nIn [10]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(m,n), permute=True)\r\nOut[10]: {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}\r\n\r\nIn [11]: diophantine(n**4 + m**4 - 2**4 - 3**4, syms=(n,m), permute=True)\r\nOut[11]: {(3, 2)}\r\n```\r\n\n",
+  "changed_files": "[\"sympy/solvers/diophantine.py\"]",
+  "original_files_saved": "[\"sympy/solvers/diophantine.py\"]",
+  "patched_files_saved": "[\"sympy/solvers/diophantine.py\"]",
+  "status": "applied"
+}

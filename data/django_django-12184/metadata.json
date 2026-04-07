@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-12184",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "5d674eac871a306405b0fbbaeb17bbeba9c68bf3",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12184\\apply_patch.log",
+  "problem_statement": "Optional URL params crash some view functions.\nDescription\n\t\nMy use case, running fine with Django until 2.2:\nURLConf:\nurlpatterns += [\n\t...\n\tre_path(r'^module/(?P<format>(html|json|xml))?/?$', views.modules, name='modules'),\n]\nView:\ndef modules(request, format='html'):\n\t...\n\treturn render(...)\nWith Django 3.0, this is now producing an error:\nTraceback (most recent call last):\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/exception.py\", line 34, in inner\n\tresponse = get_response(request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 115, in _get_response\n\tresponse = self.process_exception_by_middleware(e, request)\n File \"/l10n/venv/lib/python3.6/site-packages/django/core/handlers/base.py\", line 113, in _get_response\n\tresponse = wrapped_callback(request, *callback_args, **callback_kwargs)\nException Type: TypeError at /module/\nException Value: modules() takes from 1 to 2 positional arguments but 3 were given\n",
+  "changed_files": "[\"django/urls/resolvers.py\"]",
+  "original_files_saved": "[\"django/urls/resolvers.py\"]",
+  "patched_files_saved": "[\"django/urls/resolvers.py\"]",
+  "status": "applied"
+}

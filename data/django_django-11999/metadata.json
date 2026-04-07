@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-11999",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "84633905273fc916e3d17883810d9969c03f73c2",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11999\\apply_patch.log",
+  "problem_statement": "Cannot override get_FOO_display() in Django 2.2+.\nDescription\n\t\nI cannot override the get_FIELD_display function on models since version 2.2. It works in version 2.1.\nExample:\nclass FooBar(models.Model):\n\tfoo_bar = models.CharField(_(\"foo\"), choices=[(1, 'foo'), (2, 'bar')])\n\tdef __str__(self):\n\t\treturn self.get_foo_bar_display() # This returns 'foo' or 'bar' in 2.2, but 'something' in 2.1\n\tdef get_foo_bar_display(self):\n\t\treturn \"something\"\nWhat I expect is that I should be able to override this function.\n",
+  "changed_files": "[\"django/db/models/fields/__init__.py\"]",
+  "original_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "patched_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "status": "applied"
+}

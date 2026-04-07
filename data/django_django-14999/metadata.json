@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-14999",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14999\\apply_patch.log",
+  "problem_statement": "RenameModel with db_table should be a noop.\nDescription\n\t\nA RenameModel operation that already has db_table defined must be a noop.\nIn Postgres, it drops and recreates foreign key constraints. In sqlite it recreates the table (as expected for a table renaming).\n",
+  "changed_files": "[\"django/db/migrations/operations/models.py\"]",
+  "original_files_saved": "[\"django/db/migrations/operations/models.py\"]",
+  "patched_files_saved": "[\"django/db/migrations/operations/models.py\"]",
+  "status": "applied"
+}

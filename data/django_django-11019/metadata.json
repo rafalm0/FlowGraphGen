@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-11019",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "93e892bb645b16ebaf287beb5fe7f3ffe8d10408",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11019\\apply_patch.log",
+  "problem_statement": "Merging 3 or more media objects can throw unnecessary MediaOrderConflictWarnings\nDescription\n\t\nConsider the following form definition, where text-editor-extras.js depends on text-editor.js but all other JS files are independent:\nfrom django import forms\nclass ColorPicker(forms.Widget):\n\tclass Media:\n\t\tjs = ['color-picker.js']\nclass SimpleTextWidget(forms.Widget):\n\tclass Media:\n\t\tjs = ['text-editor.js']\nclass FancyTextWidget(forms.Widget):\n\tclass Media:\n\t\tjs = ['text-editor.js', 'text-editor-extras.js', 'color-picker.js']\nclass MyForm(forms.Form):\n\tbackground_color = forms.CharField(widget=ColorPicker())\n\tintro = forms.CharField(widget=SimpleTextWidget())\n\tbody = forms.CharField(widget=FancyTextWidget())\nDjango should be able to resolve the JS files for the final form into the order text-editor.js, text-editor-extras.js, color-picker.js. However, accessing MyForm().media results in:\n/projects/django/django/forms/widgets.py:145: MediaOrderConflictWarning: Detected duplicate Media files in an opposite order:\ntext-editor-extras.js\ntext-editor.js\n MediaOrderConflictWarning,\nMedia(css={}, js=['text-editor-extras.js', 'color-picker.js', 'text-editor.js'])\nThe MediaOrderConflictWarning is a result of the order that the additions happen in: ColorPicker().media + SimpleTextWidget().media produces Media(css={}, js=['color-picker.js', 'text-editor.js']), which (wrongly) imposes the constraint that color-picker.js must appear before text-editor.js.\nThe final result is particularly unintuitive here, as it's worse than the \"naïve\" result produced by Django 1.11 before order-checking was added (color-picker.js, text-editor.js, text-editor-extras.js), and the pair of files reported in the warning message seems wrong too (aren't color-picker.js and text-editor.js the wrong-ordered ones?)\n",
+  "changed_files": "[\"django/forms/widgets.py\"]",
+  "original_files_saved": "[\"django/forms/widgets.py\"]",
+  "patched_files_saved": "[\"django/forms/widgets.py\"]",
+  "status": "applied"
+}

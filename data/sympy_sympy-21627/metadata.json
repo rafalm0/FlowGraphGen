@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-21627",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "126f80578140e752ad5135aac77b8ff887eede3e",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-21627\\apply_patch.log",
+  "problem_statement": "Bug: maximum recusion depth error when checking is_zero of cosh expression\nThe following code causes a `RecursionError: maximum recursion depth exceeded while calling a Python object` error when checked if it is zero:\r\n```\r\nexpr =sympify(\"cosh(acos(-i + acosh(-g + i)))\")\r\nexpr.is_zero\r\n```\n",
+  "changed_files": "[\"sympy/functions/elementary/complexes.py\"]",
+  "original_files_saved": "[\"sympy/functions/elementary/complexes.py\"]",
+  "patched_files_saved": "[\"sympy/functions/elementary/complexes.py\"]",
+  "status": "applied"
+}

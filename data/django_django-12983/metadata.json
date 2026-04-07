@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-12983",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "3bc4240d979812bd11365ede04c028ea13fdc8c6",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12983\\apply_patch.log",
+  "problem_statement": "Make django.utils.text.slugify() strip dashes and underscores\nDescription\n\t \n\t\t(last modified by Elinaldo do Nascimento Monteiro)\n\t \nBug generation slug\nExample:\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: ___this-is-a-test-\nImprovement after correction\nfrom django.utils import text\ntext.slugify(\"___This is a test ---\")\noutput: this-is-a-test\n​PR\n",
+  "changed_files": "[\"django/utils/text.py\"]",
+  "original_files_saved": "[\"django/utils/text.py\"]",
+  "patched_files_saved": "[\"django/utils/text.py\"]",
+  "status": "applied"
+}

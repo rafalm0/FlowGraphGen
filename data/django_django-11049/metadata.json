@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-11049",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "17455e924e243e7a55e8a38f45966d8cbb27c273",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-11049\\apply_patch.log",
+  "problem_statement": "Correct expected format in invalid DurationField error message\nDescription\n\t\nIf you enter a duration \"14:00\" into a duration field, it translates to \"00:14:00\" which is 14 minutes.\nThe current error message for invalid DurationField says that this should be the format of durations: \"[DD] [HH:[MM:]]ss[.uuuuuu]\". But according to the actual behaviour, it should be: \"[DD] [[HH:]MM:]ss[.uuuuuu]\", because seconds are mandatory, minutes are optional, and hours are optional if minutes are provided.\nThis seems to be a mistake in all Django versions that support the DurationField.\nAlso the duration fields could have a default help_text with the requested format, because the syntax is not self-explanatory.\n",
+  "changed_files": "[\"django/db/models/fields/__init__.py\"]",
+  "original_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "patched_files_saved": "[\"django/db/models/fields/__init__.py\"]",
+  "status": "applied"
+}

@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-16046",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "ec13e801b820614ff374cb0046092caab8d67249",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16046\\apply_patch.log",
+  "problem_statement": "Fix numberformat.py \"string index out of range\" when null\nDescription\n\t\nWhen:\nif str_number[0] == \"-\"\nencounters a number field that's null when formatting for the admin list_display this causes an \nIndexError: string index out of range\nI can attach the proposed fix here, or open a pull request on GitHub if you like?\n",
+  "changed_files": "[\"django/utils/numberformat.py\"]",
+  "original_files_saved": "[\"django/utils/numberformat.py\"]",
+  "patched_files_saved": "[\"django/utils/numberformat.py\"]",
+  "status": "applied"
+}

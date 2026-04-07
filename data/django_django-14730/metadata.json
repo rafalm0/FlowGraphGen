@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-14730",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "4fe3774c729f3fd5105b3001fe69a70bdca95ac3",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-14730\\apply_patch.log",
+  "problem_statement": "Prevent developers from defining a related_name on symmetrical ManyToManyFields\nDescription\n\t\nIn ManyToManyField, if the symmetrical argument is passed, or if it's a self-referential ManyToMany relationship, the related field on the target model is not created. However, if a developer passes in the related_name not understanding this fact, they may be confused until they find the information about symmetrical relationship. Thus, it is proposed to raise an error when the user defines a ManyToManyField in this condition.\n",
+  "changed_files": "[\"django/db/models/fields/related.py\"]",
+  "original_files_saved": "[\"django/db/models/fields/related.py\"]",
+  "patched_files_saved": "[\"django/db/models/fields/related.py\"]",
+  "status": "applied"
+}

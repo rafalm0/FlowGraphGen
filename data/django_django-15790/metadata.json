@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-15790",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "c627226d05dd52aef59447dcfb29cec2c2b11b8a",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-15790\\apply_patch.log",
+  "problem_statement": "check_for_template_tags_with_the_same_name with libraries in TEMPLATES\nDescription\n\t\nI didn't explore this thoroughly, but I think there might be an issue with the check_for_template_tags_with_the_same_name when you add a template tag library into TEMPLATES['OPTIONS']['librairies'].\nI'm getting an error like: \n(templates.E003) 'my_tags' is used for multiple template tag modules: 'someapp.templatetags.my_tags', 'someapp.templatetags.my_tags'\n",
+  "changed_files": "[\"django/core/checks/templates.py\"]",
+  "original_files_saved": "[\"django/core/checks/templates.py\"]",
+  "patched_files_saved": "[\"django/core/checks/templates.py\"]",
+  "status": "applied"
+}

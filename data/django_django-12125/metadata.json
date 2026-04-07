@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-12125",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-12125\\apply_patch.log",
+  "problem_statement": "makemigrations produces incorrect path for inner classes\nDescription\n\t\nWhen you define a subclass from django.db.models.Field as an inner class of some other class, and use this field inside a django.db.models.Model class, then when you run manage.py makemigrations, a migrations file is created which refers to the inner class as if it were a top-level class of the module it is in.\nTo reproduce, create the following as your model:\nclass Outer(object):\n\tclass Inner(models.CharField):\n\t\tpass\nclass A(models.Model):\n\tfield = Outer.Inner(max_length=20)\nAfter running manage.py makemigrations, the generated migrations file contains the following:\nmigrations.CreateModel(\n\tname='A',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('field', test1.models.Inner(max_length=20)),\n\t],\n),\nNote the test1.models.Inner, which should have been test1.models.Outer.Inner.\nThe real life case involved an EnumField from django-enumfields, defined as an inner class of a Django Model class, similar to this:\nimport enum\nfrom enumfields import Enum, EnumField\nclass Thing(models.Model):\n\t@enum.unique\n\tclass State(Enum):\n\t\ton = 'on'\n\t\toff = 'off'\n\tstate = EnumField(enum=State)\nThis results in the following migrations code:\nmigrations.CreateModel(\n\tname='Thing',\n\tfields=[\n\t\t('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n\t\t('state', enumfields.fields.EnumField(enum=test1.models.State, max_length=10)),\n\t],\n),\nThis refers to test1.models.State, instead of to test1.models.Thing.State.\n",
+  "changed_files": "[\"django/db/migrations/serializer.py\"]",
+  "original_files_saved": "[\"django/db/migrations/serializer.py\"]",
+  "patched_files_saved": "[\"django/db/migrations/serializer.py\"]",
+  "status": "applied"
+}

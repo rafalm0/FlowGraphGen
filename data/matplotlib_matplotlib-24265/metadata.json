@@ -1,0 +1,17 @@
+{
+  "instance_id": "matplotlib__matplotlib-24265",
+  "repo": "matplotlib/matplotlib",
+  "repo_url": "https://github.com/matplotlib/matplotlib.git",
+  "base_commit": "e148998d9bed9d1b53a91587ad48f9bb43c7737f",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\matplotlib_matplotlib-24265\\apply_patch.log",
+  "problem_statement": "[Bug]: Setting matplotlib.pyplot.style.library['seaborn-colorblind'] result in key error on matplotlib v3.6.1\n### Bug summary\n\nI have code that executes:\r\n```\r\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\r\n```\r\n\r\nUsing version 3.4.3 of matplotlib, this works fine. I recently installed my code on a machine with matplotlib version 3.6.1 and upon importing my code, this generated a key error for line `the_rc = plt.style.library[\"seaborn-colorblind\"]` saying \"seaborn-colorblind\" was a bad key.\n\n### Code for reproduction\n\n```python\nimport matplotlib.pyplot as plt\r\nthe_rc = plt.style.library[\"seaborn-colorblind\"]\n```\n\n\n### Actual outcome\n\nTraceback (most recent call last):\r\nKeyError: 'seaborn-colorblind'\n\n### Expected outcome\n\nseaborn-colorblind should be set as the matplotlib library style and I should be able to continue plotting with that style.\n\n### Additional information\n\n- Bug occurs with matplotlib version 3.6.1\r\n- Bug does not occur with matplotlib version 3.4.3\r\n- Tested on MacOSX and Ubuntu (same behavior on both)\n\n### Operating system\n\nOS/X\n\n### Matplotlib Version\n\n3.6.1\n\n### Matplotlib Backend\n\nMacOSX\n\n### Python version\n\n3.9.7\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\npip\n",
+  "changed_files": "[\"lib/matplotlib/style/core.py\"]",
+  "original_files_saved": "[\"lib/matplotlib/style/core.py\"]",
+  "patched_files_saved": "[\"lib/matplotlib/style/core.py\"]",
+  "status": "applied"
+}

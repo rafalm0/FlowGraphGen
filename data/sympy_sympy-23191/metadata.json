@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-23191",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "fa9b4b140ec0eaf75a62c1111131626ef0f6f524",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-23191\\apply_patch.log",
+  "problem_statement": "display bug while using pretty_print with sympy.vector object in the terminal\nThe following code jumbles some of the outputs in the terminal, essentially by inserting the unit vector in the middle -\r\n```python\r\nfrom sympy import *\r\nfrom sympy.vector import CoordSys3D, Del\r\n\r\ninit_printing()\r\n\r\ndelop = Del()\r\nCC_ = CoordSys3D(\"C\")\r\nx,    y,    z    = CC_.x, CC_.y, CC_.z\r\nxhat, yhat, zhat = CC_.i, CC_.j, CC_.k\r\n\r\nt = symbols(\"t\")\r\nten = symbols(\"10\", positive=True)\r\neps, mu = 4*pi*ten**(-11), ten**(-5)\r\n\r\nBx = 2 * ten**(-4) * cos(ten**5 * t) * sin(ten**(-3) * y)\r\nvecB = Bx * xhat\r\nvecE = (1/eps) * Integral(delop.cross(vecB/mu).doit(), t)\r\n\r\npprint(vecB)\r\nprint()\r\npprint(vecE)\r\nprint()\r\npprint(vecE.doit())\r\n```\r\n\r\nOutput:\r\n```python\r\n⎛     ⎛y_C⎞    ⎛  5  ⎞⎞    \r\n⎜2⋅sin⎜───⎟ i_C⋅cos⎝10 ⋅t⎠⎟\r\n⎜     ⎜  3⎟           ⎟    \r\n⎜     ⎝10 ⎠           ⎟    \r\n⎜─────────────────────⎟    \r\n⎜           4         ⎟    \r\n⎝         10          ⎠    \r\n\r\n⎛     ⌠                           ⎞    \r\n⎜     ⎮       ⎛y_C⎞    ⎛  5  ⎞    ⎟ k_C\r\n⎜     ⎮ -2⋅cos⎜───⎟⋅cos⎝10 ⋅t⎠    ⎟    \r\n⎜     ⎮       ⎜  3⎟               ⎟    \r\n⎜  11 ⎮       ⎝10 ⎠               ⎟    \r\n⎜10  ⋅⎮ ─────────────────────── dt⎟    \r\n⎜     ⎮             2             ⎟    \r\n⎜     ⎮           10              ⎟    \r\n⎜     ⌡                           ⎟    \r\n⎜─────────────────────────────────⎟    \r\n⎝               4⋅π               ⎠    \r\n\r\n⎛   4    ⎛  5  ⎞    ⎛y_C⎞ ⎞    \r\n⎜-10 ⋅sin⎝10 ⋅t⎠⋅cos⎜───⎟ k_C ⎟\r\n⎜                   ⎜  3⎟ ⎟    \r\n⎜                   ⎝10 ⎠ ⎟    \r\n⎜─────────────────────────⎟    \r\n⎝           2⋅π           ⎠    ```\n",
+  "changed_files": "[\"sympy/printing/pretty/pretty.py\"]",
+  "original_files_saved": "[\"sympy/printing/pretty/pretty.py\"]",
+  "patched_files_saved": "[\"sympy/printing/pretty/pretty.py\"]",
+  "status": "applied"
+}

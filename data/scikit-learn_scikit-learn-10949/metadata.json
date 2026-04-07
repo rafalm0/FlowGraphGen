@@ -1,0 +1,17 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-10949",
+  "repo": "scikit-learn/scikit-learn",
+  "repo_url": "https://github.com/scikit-learn/scikit-learn.git",
+  "base_commit": "3b5abf76597ce6aff76192869f92647c1b5259e7",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\scikit-learn_scikit-learn-10949\\apply_patch.log",
+  "problem_statement": "warn_on_dtype with DataFrame\n#### Description\r\n\r\n``warn_on_dtype`` has no effect when input is a pandas ``DataFrame``\r\n\r\n#### Steps/Code to Reproduce\r\n```python\r\nfrom sklearn.utils.validation import check_array\r\nimport pandas as pd\r\ndf = pd.DataFrame([[1, 2, 3], [2, 3, 4]], dtype=object)\r\nchecked = check_array(df, warn_on_dtype=True)\r\n```\r\n\r\n#### Expected result: \r\n\r\n```python-traceback\r\nDataConversionWarning: Data with input dtype object was converted to float64.\r\n```\r\n\r\n#### Actual Results\r\nNo warning is thrown\r\n\r\n#### Versions\r\nLinux-4.4.0-116-generic-x86_64-with-debian-stretch-sid\r\nPython 3.6.3 |Anaconda, Inc.| (default, Nov  3 2017, 19:19:16) \r\n[GCC 7.2.0]\r\nNumPy 1.13.1\r\nSciPy 0.19.1\r\nScikit-Learn 0.20.dev0\r\nPandas 0.21.0\r\n\nwarn_on_dtype with DataFrame\n#### Description\r\n\r\n``warn_on_dtype`` has no effect when input is a pandas ``DataFrame``\r\n\r\n#### Steps/Code to Reproduce\r\n```python\r\nfrom sklearn.utils.validation import check_array\r\nimport pandas as pd\r\ndf = pd.DataFrame([[1, 2, 3], [2, 3, 4]], dtype=object)\r\nchecked = check_array(df, warn_on_dtype=True)\r\n```\r\n\r\n#### Expected result: \r\n\r\n```python-traceback\r\nDataConversionWarning: Data with input dtype object was converted to float64.\r\n```\r\n\r\n#### Actual Results\r\nNo warning is thrown\r\n\r\n#### Versions\r\nLinux-4.4.0-116-generic-x86_64-with-debian-stretch-sid\r\nPython 3.6.3 |Anaconda, Inc.| (default, Nov  3 2017, 19:19:16) \r\n[GCC 7.2.0]\r\nNumPy 1.13.1\r\nSciPy 0.19.1\r\nScikit-Learn 0.20.dev0\r\nPandas 0.21.0\r\n\n",
+  "changed_files": "[\"sklearn/utils/validation.py\"]",
+  "original_files_saved": "[\"sklearn/utils/validation.py\"]",
+  "patched_files_saved": "[\"sklearn/utils/validation.py\"]",
+  "status": "applied"
+}

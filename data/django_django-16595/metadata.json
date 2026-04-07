@@ -1,0 +1,17 @@
+{
+  "instance_id": "django__django-16595",
+  "repo": "django/django",
+  "repo_url": "https://github.com/django/django.git",
+  "base_commit": "f9fe062de5fc0896d6bbbf3f260b5c44473b3c77",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\django_django-16595\\apply_patch.log",
+  "problem_statement": "Migration optimizer does not reduce multiple AlterField\nDescription\n\t\nLet's consider the following operations: \noperations = [\n\tmigrations.AddField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=256, null=True),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True, help_text=\"help\"),\n\t),\n\tmigrations.AlterField(\n\t\tmodel_name=\"book\",\n\t\tname=\"title\",\n\t\tfield=models.CharField(max_length=128, null=True, help_text=\"help\", default=None),\n\t),\n]\nIf I run the optimizer, I get only the AddField, as we could expect. However, if the AddField model is separated from the AlterField (e.g. because of a non-elidable migration, or inside a non-squashed migration), none of the AlterField are reduced:\noptimizer.optimize(operations[1:], \"books\") \n[<AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>,\n <AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>,\n <AlterField model_name='book', name='title', field=<django.db.models.fields.CharField>>]\nIndeed, the AlterField.reduce does not consider the the case where operation is also an AlterField. \nIs this behaviour intended? If so, could it be documented? \nOtherwise, would it make sense to add something like\n\t\tif isinstance(operation, AlterField) and self.is_same_field_operation(\n\t\t\toperation\n\t\t):\n\t\t\treturn [operation]\n",
+  "changed_files": "[\"django/db/migrations/operations/fields.py\"]",
+  "original_files_saved": "[\"django/db/migrations/operations/fields.py\"]",
+  "patched_files_saved": "[\"django/db/migrations/operations/fields.py\"]",
+  "status": "applied"
+}

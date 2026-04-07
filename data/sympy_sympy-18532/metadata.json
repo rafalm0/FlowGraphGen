@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-18532",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "74227f900b05009d4eed62e34a166228788a32ca",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-18532\\apply_patch.log",
+  "problem_statement": "expr.atoms() should return objects with no args instead of subclasses of Atom\n`expr.atoms()` with no arguments returns subclasses of `Atom` in `expr`. But the correct definition of a leaf node should be that it has no `.args`. \n\nThis should be easy to fix, but one needs to check that this doesn't affect the performance. \n\n",
+  "changed_files": "[\"sympy/core/basic.py\"]",
+  "original_files_saved": "[\"sympy/core/basic.py\"]",
+  "patched_files_saved": "[\"sympy/core/basic.py\"]",
+  "status": "applied"
+}

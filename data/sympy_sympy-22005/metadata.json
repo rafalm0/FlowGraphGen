@@ -1,0 +1,17 @@
+{
+  "instance_id": "sympy__sympy-22005",
+  "repo": "sympy/sympy",
+  "repo_url": "https://github.com/sympy/sympy.git",
+  "base_commit": "2c83657ff1c62fc2761b639469fdac7f7561a72a",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sympy_sympy-22005\\apply_patch.log",
+  "problem_statement": "detection of infinite solution request\n```python\r\n>>> solve_poly_system((x - 1,), x, y)\r\nTraceback (most recent call last):\r\n...\r\nNotImplementedError:\r\nonly zero-dimensional systems supported (finite number of solutions)\r\n>>> solve_poly_system((y - 1,), x, y)  <--- this is not handled correctly\r\n[(1,)]\r\n```\r\n```diff\r\ndiff --git a/sympy/solvers/polysys.py b/sympy/solvers/polysys.py\r\nindex b9809fd4e9..674322d4eb 100644\r\n--- a/sympy/solvers/polysys.py\r\n+++ b/sympy/solvers/polysys.py\r\n@@ -240,7 +240,7 @@ def _solve_reduced_system(system, gens, entry=False):\r\n \r\n         univariate = list(filter(_is_univariate, basis))\r\n \r\n-        if len(univariate) == 1:\r\n+        if len(univariate) == 1 and len(gens) == 1:\r\n             f = univariate.pop()\r\n         else:\r\n             raise NotImplementedError(filldedent('''\r\ndiff --git a/sympy/solvers/tests/test_polysys.py b/sympy/solvers/tests/test_polysys.py\r\nindex 58419f8762..9e674a6fe6 100644\r\n--- a/sympy/solvers/tests/test_polysys.py\r\n+++ b/sympy/solvers/tests/test_polysys.py\r\n@@ -48,6 +48,10 @@ def test_solve_poly_system():\r\n     raises(NotImplementedError, lambda: solve_poly_system(\r\n         [z, -2*x*y**2 + x + y**2*z, y**2*(-z - 4) + 2]))\r\n     raises(PolynomialError, lambda: solve_poly_system([1/x], x))\r\n+    raises(NotImplementedError, lambda: solve_poly_system(\r\n+        Poly(x - 1, x, y), (x, y)))\r\n+    raises(NotImplementedError, lambda: solve_poly_system(\r\n+        Poly(y - 1, x, y), (x, y)))\r\n \r\n \r\n def test_solve_biquadratic():\r\n```\n",
+  "changed_files": "[\"sympy/solvers/polysys.py\"]",
+  "original_files_saved": "[\"sympy/solvers/polysys.py\"]",
+  "patched_files_saved": "[\"sympy/solvers/polysys.py\"]",
+  "status": "applied"
+}
