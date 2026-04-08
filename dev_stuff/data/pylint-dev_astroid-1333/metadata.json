@@ -1,0 +1,17 @@
+{
+  "instance_id": "pylint-dev__astroid-1333",
+  "repo": "pylint-dev/astroid",
+  "repo_url": "https://github.com/pylint-dev/astroid.git",
+  "base_commit": "d2a5b3c7b1e203fec3c7ca73c30eb1785d3d4d0a",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1333\\apply_patch.log",
+  "problem_statement": "astroid 2.9.1 breaks pylint with missing __init__.py: F0010: error while code parsing: Unable to load file __init__.py\n### Steps to reproduce\r\n> Steps provided are for Windows 11, but initial problem found in Ubuntu 20.04\r\n\r\n> Update 2022-01-04: Corrected repro steps and added more environment details\r\n\r\n1. Set up simple repo with following structure (all files can be empty):\r\n```\r\nroot_dir/\r\n|--src/\r\n|----project/ # Notice the missing __init__.py\r\n|------file.py # It can be empty, but I added `import os` at the top\r\n|----__init__.py\r\n```\r\n2. Open a command prompt\r\n3. `cd root_dir`\r\n4. `python -m venv venv`\r\n5. `venv/Scripts/activate`\r\n6. `pip install pylint astroid==2.9.1` # I also repro'd on the latest, 2.9.2\r\n7. `pylint src/project` # Updated from `pylint src`\r\n8. Observe failure:\r\n```\r\nsrc\\project\\__init__.py:1:0: F0010: error while code parsing: Unable to load file src\\project\\__init__.py:\r\n```\r\n\r\n### Current behavior\r\nFails with `src\\project\\__init__.py:1:0: F0010: error while code parsing: Unable to load file src\\project\\__init__.py:`\r\n\r\n### Expected behavior\r\nDoes not fail with error.\r\n> If you replace step 6 with `pip install pylint astroid==2.9.0`, you get no failure with an empty output - since no files have content\r\n\r\n### `python -c \"from astroid import __pkginfo__; print(__pkginfo__.version)\"` output\r\n2.9.1\r\n\r\n`python 3.9.1`\r\n`pylint 2.12.2 `\r\n\r\n\r\n\r\nThis issue has been observed with astroid `2.9.1` and `2.9.2`\n",
+  "changed_files": "[\"astroid/modutils.py\"]",
+  "original_files_saved": "[\"astroid/modutils.py\"]",
+  "patched_files_saved": "[\"astroid/modutils.py\"]",
+  "status": "applied"
+}

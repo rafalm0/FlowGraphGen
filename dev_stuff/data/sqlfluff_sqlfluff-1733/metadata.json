@@ -1,0 +1,17 @@
+{
+  "instance_id": "sqlfluff__sqlfluff-1733",
+  "repo": "sqlfluff/sqlfluff",
+  "repo_url": "https://github.com/sqlfluff/sqlfluff.git",
+  "base_commit": "a1579a16b1d8913d9d7c7d12add374a290bcc78c",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\sqlfluff_sqlfluff-1733\\apply_patch.log",
+  "problem_statement": "Extra space when first field moved to new line in a WITH statement\nNote, the query below uses a `WITH` statement. If I just try to fix the SQL within the CTE, this works fine.\r\n\r\nGiven the following SQL:\r\n\r\n```sql\r\nWITH example AS (\r\n    SELECT my_id,\r\n        other_thing,\r\n        one_more\r\n    FROM\r\n        my_table\r\n)\r\n\r\nSELECT *\r\nFROM example\r\n```\r\n\r\n## Expected Behaviour\r\n\r\nafter running `sqlfluff fix` I'd expect (`my_id` gets moved down and indented properly):\r\n\r\n```sql\r\nWITH example AS (\r\n    SELECT\r\n        my_id,\r\n        other_thing,\r\n        one_more\r\n    FROM\r\n        my_table\r\n)\r\n\r\nSELECT *\r\nFROM example\r\n```\r\n\r\n## Observed Behaviour\r\n\r\nafter running `sqlfluff fix` we get (notice that `my_id` is indented one extra space)\r\n\r\n```sql\r\nWITH example AS (\r\n    SELECT\r\n         my_id,\r\n        other_thing,\r\n        one_more\r\n    FROM\r\n        my_table\r\n)\r\n\r\nSELECT *\r\nFROM example\r\n```\r\n\r\n## Steps to Reproduce\r\n\r\nNoted above. Create a file with the initial SQL and fun `sqfluff fix` on it.\r\n\r\n## Dialect\r\n\r\nRunning with default config.\r\n\r\n## Version\r\nInclude the output of `sqlfluff --version` along with your Python version\r\n\r\nsqlfluff, version 0.7.0\r\nPython 3.7.5\r\n\r\n## Configuration\r\n\r\nDefault config.\r\n\n",
+  "changed_files": "[\"src/sqlfluff/rules/L039.py\"]",
+  "original_files_saved": "[\"src/sqlfluff/rules/L039.py\"]",
+  "patched_files_saved": "[\"src/sqlfluff/rules/L039.py\"]",
+  "status": "applied"
+}

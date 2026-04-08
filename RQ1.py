@@ -34,6 +34,7 @@ import time
 from pathlib import Path
 from typing import Optional
 import ast
+from together import Together
 
 import pandas as pd
 from groq import Groq
@@ -44,17 +45,18 @@ from codebleu import calc_codebleu
 # =========================
 
 # MODEL = "llama-3.1-8b-instant"
-MODEL = "allam-2-7b"
-MAX_CODE_CHARS = 8000
-MAX_GRAPH_CHARS = 2000
+MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+MAX_CODE_CHARS = 12000
+MAX_GRAPH_CHARS = 6000
 
 
 # =========================
 # LLM CLIENT
 # =========================
 
-def make_client(api_key: str) -> Groq:
-    return Groq(api_key=api_key)
+def make_client(api_key: str):
+    return Together(api_key=api_key)
+    # return Groq(api_key=api_key)
 
 
 def get_completion(client: Groq, prompt: str, temp: float = 0.2) -> str:
@@ -121,6 +123,9 @@ Rules:
 - Keep the graph concise and readable
 - Use function and method names when helpful
 - Do not include commentary outside the graph
+- Before sending, remove anything before and after the diff.
+- Your output will be immediatly applied as git diff.
+
 
 PYTHON CODE:
 {code[:MAX_CODE_CHARS]}
@@ -160,6 +165,8 @@ Output constraints:
 - Do not include explanations.
 - Do not include markdown code fences.
 - Do not include diff markers.
+- Before sending, remove anything before and after the diff.
+- Your output will be immediatly applied as git diff.
 
 STRUCTURAL INFORMATION:
 {graph[:MAX_GRAPH_CHARS]}
@@ -203,6 +210,8 @@ Output constraints:
 - Do not include markdown code fences.
 - Do not output the full rewritten file.
 - Do not include any text before or after the diff.
+- Before sending, remove anything before and after the diff.
+- Your output will be immediatly applied as git diff.
 
 File name:
 {file_name}
@@ -244,6 +253,8 @@ Output constraints:
 - Do not include explanations.
 - Do not include markdown code fences.
 - Do not include diff markers.
+- Before sending, remove anything before and after the diff.
+- Your output will be immediatly applied as git diff.
 
 ORIGINAL PYTHON CODE:
 {code[:MAX_CODE_CHARS]}
@@ -280,6 +291,8 @@ Output constraints:
 - Do not include markdown code fences.
 - Do not output the full rewritten file.
 - Do not include any text before or after the diff.
+- Before sending, remove anything before and after the diff.
+- Your output will be immediatly applied as git diff.
 
 File name:
 {file_name}
@@ -536,7 +549,7 @@ def main():
     METADATA_CSV = "data/metadata.csv"
     OUTPUT_DIR = "outputs"
     API_KEY = "KEY"  # or paste your key here
-    MAX_INSTANCES = 2  # e.g. 10 for debugging
+    MAX_INSTANCES = 500  # e.g. 10 for debugging
 
     api_key = API_KEY or os.environ.get("GROQ_API_KEY")
     if not api_key:

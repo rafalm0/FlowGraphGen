@@ -1,0 +1,17 @@
+{
+  "instance_id": "pylint-dev__astroid-1866",
+  "repo": "pylint-dev/astroid",
+  "repo_url": "https://github.com/pylint-dev/astroid.git",
+  "base_commit": "6cf238d089cf4b6753c94cfc089b4a47487711e5",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1866\\apply_patch.log",
+  "problem_statement": "\"TypeError: unsupported format string passed to NoneType.__format__\" while running type inference in version 2.12.x\n### Steps to reproduce\r\n\r\nI have no concise reproducer. Exception happens every time I run pylint on some internal code, with astroid 2.12.10 and 2.12.12 (debian bookworm). It does _not_ happen with earlier versions of astroid (not with version 2.9). The pylinted code itself is \"valid\", it runs in production here.\r\n\r\n### Current behavior\r\n\r\nWhen running pylint on some code, I get this exception:\r\n```\r\nTraceback (most recent call last):\r\n  File \"/usr/lib/python3/dist-packages/pylint/utils/ast_walker.py\", line 90, in walk\r\n    callback(astroid)\r\n  File \"/usr/lib/python3/dist-packages/pylint/checkers/classes/special_methods_checker.py\", line 183, in visit_functiondef\r\n    inferred = _safe_infer_call_result(node, node)\r\n  File \"/usr/lib/python3/dist-packages/pylint/checkers/classes/special_methods_checker.py\", line 42, in _safe_infer_call_result\r\n    value = next(inferit)\r\n  File \"/usr/lib/python3/dist-packages/astroid/nodes/scoped_nodes/scoped_nodes.py\", line 1749, in infer_call_result\r\n    yield from returnnode.value.infer(context)\r\n  File \"/usr/lib/python3/dist-packages/astroid/nodes/node_ng.py\", line 159, in infer\r\n    results = list(self._explicit_inference(self, context, **kwargs))\r\n  File \"/usr/lib/python3/dist-packages/astroid/inference_tip.py\", line 45, in _inference_tip_cached\r\n    result = _cache[func, node] = list(func(*args, **kwargs))\r\n  File \"/usr/lib/python3/dist-packages/astroid/brain/brain_builtin_inference.py\", line 956, in _infer_str_format_call\r\n    formatted_string = format_template.format(*pos_values, **keyword_values)\r\nTypeError: unsupported format string passed to NoneType.__format__\r\n```\r\n\r\n### Expected behavior\r\n\r\nTypeError exception should not happen\r\n\r\n### `python -c \"from astroid import __pkginfo__; print(__pkginfo__.version)\"` output\r\n\r\n2.12.10,\r\n2.12.12\n",
+  "changed_files": "[\"astroid/brain/brain_builtin_inference.py\"]",
+  "original_files_saved": "[\"astroid/brain/brain_builtin_inference.py\"]",
+  "patched_files_saved": "[\"astroid/brain/brain_builtin_inference.py\"]",
+  "status": "applied"
+}

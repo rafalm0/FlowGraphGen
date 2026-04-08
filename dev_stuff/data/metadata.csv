@@ -1,0 +1,1085 @@
+instance_id,repo,repo_url,base_commit,sample_dir,patch_file,problem_statement_file,original_dir,patched_dir,apply_log_file,problem_statement,changed_files,original_files_saved,patched_files_saved,status
+sqlfluff__sqlfluff-1625,sqlfluff/sqlfluff,https://github.com/sqlfluff/sqlfluff.git,14e1a23a3166b9a645a16de96f694c77a5d4abb7,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625\original,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625\patched,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1625\apply_patch.log,"TSQL - L031 incorrectly triggers ""Avoid using aliases in join condition"" when no join present
+## Expected Behaviour
+
+Both of these queries should pass, the only difference is the addition of a table alias 'a':
+
+1/ no alias
+
+```
+SELECT [hello]
+FROM
+    mytable
+```
+
+2/ same query with alias
+
+```
+SELECT a.[hello]
+FROM
+    mytable AS a
+```
+
+## Observed Behaviour
+
+1/ passes
+2/ fails with: L031: Avoid using aliases in join condition.
+
+But there is no join condition :-)
+
+## Steps to Reproduce
+
+Lint queries above
+
+## Dialect
+
+TSQL
+
+## Version
+
+sqlfluff 0.6.9
+Python 3.6.9
+
+## Configuration
+
+N/A
+","[""src/sqlfluff/rules/L031.py""]","[""src/sqlfluff/rules/L031.py""]","[""src/sqlfluff/rules/L031.py""]",applied
+sqlfluff__sqlfluff-2419,sqlfluff/sqlfluff,https://github.com/sqlfluff/sqlfluff.git,f1dba0e1dd764ae72d67c3d5e1471cf14d3db030,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419\original,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419\patched,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-2419\apply_patch.log,"Rule L060 could give a specific error message
+At the moment rule L060 flags something like this:
+
+```
+L:  21 | P:   9 | L060 | Use 'COALESCE' instead of 'IFNULL' or 'NVL'.
+```
+
+Since we likely know the wrong word, it might be nice to actually flag that instead of both `IFNULL` and `NVL` - like most of the other rules do.
+
+That is it should flag this:
+
+```
+L:  21 | P:   9 | L060 | Use 'COALESCE' instead of 'IFNULL'.
+```
+ Or this:
+
+```
+L:  21 | P:   9 | L060 | Use 'COALESCE' instead of 'NVL'.
+```
+
+As appropriate.
+
+What do you think @jpy-git ?
+
+","[""src/sqlfluff/rules/L060.py""]","[""src/sqlfluff/rules/L060.py""]","[""src/sqlfluff/rules/L060.py""]",applied
+sqlfluff__sqlfluff-1733,sqlfluff/sqlfluff,https://github.com/sqlfluff/sqlfluff.git,a1579a16b1d8913d9d7c7d12add374a290bcc78c,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733\original,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733\patched,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1733\apply_patch.log,"Extra space when first field moved to new line in a WITH statement
+Note, the query below uses a `WITH` statement. If I just try to fix the SQL within the CTE, this works fine.
+
+Given the following SQL:
+
+```sql
+WITH example AS (
+    SELECT my_id,
+        other_thing,
+        one_more
+    FROM
+        my_table
+)
+
+SELECT *
+FROM example
+```
+
+## Expected Behaviour
+
+after running `sqlfluff fix` I'd expect (`my_id` gets moved down and indented properly):
+
+```sql
+WITH example AS (
+    SELECT
+        my_id,
+        other_thing,
+        one_more
+    FROM
+        my_table
+)
+
+SELECT *
+FROM example
+```
+
+## Observed Behaviour
+
+after running `sqlfluff fix` we get (notice that `my_id` is indented one extra space)
+
+```sql
+WITH example AS (
+    SELECT
+         my_id,
+        other_thing,
+        one_more
+    FROM
+        my_table
+)
+
+SELECT *
+FROM example
+```
+
+## Steps to Reproduce
+
+Noted above. Create a file with the initial SQL and fun `sqfluff fix` on it.
+
+## Dialect
+
+Running with default config.
+
+## Version
+Include the output of `sqlfluff --version` along with your Python version
+
+sqlfluff, version 0.7.0
+Python 3.7.5
+
+## Configuration
+
+Default config.
+
+","[""src/sqlfluff/rules/L039.py""]","[""src/sqlfluff/rules/L039.py""]","[""src/sqlfluff/rules/L039.py""]",applied
+sqlfluff__sqlfluff-1517,sqlfluff/sqlfluff,https://github.com/sqlfluff/sqlfluff.git,304a197829f98e7425a46d872ada73176137e5ae,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517\original,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517\patched,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1517\apply_patch.log,"""Dropped elements in sequence matching"" when doubled semicolon
+## Expected Behaviour
+Frankly, I'm not sure whether it (doubled `;`) should be just ignored or rather some specific rule should be triggered.
+## Observed Behaviour
+```console
+(.venv) ?master ~/prod/_inne/sqlfluff> echo ""select id from tbl;;"" | sqlfluff lint -
+Traceback (most recent call last):
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/bin/sqlfluff"", line 11, in <module>
+    load_entry_point('sqlfluff', 'console_scripts', 'sqlfluff')()
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/lib/python3.9/site-packages/click/core.py"", line 1137, in __call__
+    return self.main(*args, **kwargs)
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/lib/python3.9/site-packages/click/core.py"", line 1062, in main
+    rv = self.invoke(ctx)
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/lib/python3.9/site-packages/click/core.py"", line 1668, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/lib/python3.9/site-packages/click/core.py"", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File ""/home/adam/prod/_inne/sqlfluff/.venv/lib/python3.9/site-packages/click/core.py"", line 763, in invoke
+    return __callback(*args, **kwargs)
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/cli/commands.py"", line 347, in lint
+    result = lnt.lint_string_wrapped(sys.stdin.read(), fname=""stdin"")
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/linter/linter.py"", line 789, in lint_string_wrapped
+    linted_path.add(self.lint_string(string, fname=fname, fix=fix))
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/linter/linter.py"", line 668, in lint_string
+    parsed = self.parse_string(in_str=in_str, fname=fname, config=config)
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/linter/linter.py"", line 607, in parse_string
+    return self.parse_rendered(rendered, recurse=recurse)
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/linter/linter.py"", line 313, in parse_rendered
+    parsed, pvs = cls._parse_tokens(
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/linter/linter.py"", line 190, in _parse_tokens
+    parsed: Optional[BaseSegment] = parser.parse(
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/parser/parser.py"", line 32, in parse
+    parsed = root_segment.parse(parse_context=ctx)
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/parser/segments/base.py"", line 821, in parse
+    check_still_complete(segments, m.matched_segments, m.unmatched_segments)
+  File ""/home/adam/prod/_inne/sqlfluff/src/sqlfluff/core/parser/helpers.py"", line 30, in check_still_complete
+    raise RuntimeError(
+RuntimeError: Dropped elements in sequence matching! 'select id from tbl;;' != ';'
+
+```
+## Steps to Reproduce
+Run 
+```console
+echo ""select id from tbl;;"" | sqlfluff lint -
+```
+## Dialect
+default (ansi)
+## Version
+```
+sqlfluff, version 0.6.6
+Python 3.9.5
+```
+## Configuration
+None
+
+","[""src/sqlfluff/core/parser/helpers.py""]","[""src/sqlfluff/core/parser/helpers.py""]","[""src/sqlfluff/core/parser/helpers.py""]",applied
+sqlfluff__sqlfluff-1763,sqlfluff/sqlfluff,https://github.com/sqlfluff/sqlfluff.git,a10057635e5b2559293a676486f0b730981f037a,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763\original,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763\patched,D:\Projects\COMP691\FlowGraphGen\data\sqlfluff_sqlfluff-1763\apply_patch.log,"dbt postgres fix command errors with UnicodeEncodeError and also wipes the .sql file
+_If this is a parsing or linting issue, please include a minimal SQL example which reproduces the issue, along with the `sqlfluff parse` output, `sqlfluff lint` output and `sqlfluff fix` output when relevant._
+
+## Expected Behaviour
+Violation failure notice at a minimum, without wiping the file. Would like a way to ignore the known error at a minimum as --noqa is not getting past this. Actually would expect --noqa to totally ignore this.
+
+## Observed Behaviour
+Reported error: `UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 120: character maps to <undefined>`
+
+## Steps to Reproduce
+SQL file:
+```sql
+SELECT
+    reacted_table_name_right.descendant_id AS category_id,
+    string_agg(redacted_table_name_left.name, ' → ' ORDER BY reacted_table_name_right.generations DESC) AS breadcrumbs -- noqa
+FROM {{ ref2('redacted_schema_name', 'redacted_table_name_left') }} AS redacted_table_name_left
+INNER JOIN {{ ref2('redacted_schema_name', 'reacted_table_name_right') }} AS reacted_table_name_right
+    ON redacted_table_name_left.id = order_issue_category_hierarchies.ancestor_id
+GROUP BY reacted_table_name_right.descendant_id
+```
+Running `sqlfluff fix --ignore templating,parsing,lexing -vvvv` and accepting proposed fixes for linting violations.
+
+## Dialect
+`postgres`, with `dbt` templater
+
+## Version
+`python 3.7.12`
+`sqlfluff 0.7.0`
+`sqlfluff-templater-dbt 0.7.0`
+
+## Configuration
+I've tried a few, here's one:
+```
+[sqlfluff]
+verbose = 2
+dialect = postgres
+templater = dbt
+exclude_rules = None
+output_line_length = 80
+runaway_limit = 10
+ignore_templated_areas = True
+processes = 3
+# Comma separated list of file extensions to lint.
+
+# NB: This config will only apply in the root folder.
+sql_file_exts = .sql
+
+[sqlfluff:indentation]
+indented_joins = False
+indented_using_on = True
+template_blocks_indent = True
+
+[sqlfluff:templater]
+unwrap_wrapped_queries = True
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
+
+[sqlfluff:templater:jinja:macros]
+# Macros provided as builtins for dbt projects
+dbt_ref = {% macro ref(model_ref) %}{{model_ref}}{% endmacro %}
+dbt_source = {% macro source(source_name, table) %}{{source_name}}_{{table}}{% endmacro %}
+dbt_config = {% macro config() %}{% for k in kwargs %}{% endfor %}{% endmacro %}
+dbt_var = {% macro var(variable, default='') %}item{% endmacro %}
+dbt_is_incremental = {% macro is_incremental() %}True{% endmacro %}
+
+# Common config across rules
+[sqlfluff:rules]
+tab_space_size = 4
+indent_unit = space
+single_table_references = consistent
+unquoted_identifiers_policy = all
+
+# L001 - Remove trailing whitespace (fix)
+# L002 - Single section of whitespace should not contain both tabs and spaces (fix)
+# L003 - Keep consistent indentation (fix)
+# L004 - We use 4 spaces for indentation just for completeness (fix)
+# L005 - Remove space before commas (fix)
+# L006 - Operators (+, -, *, /) will be wrapped by a single space each side (fix)
+
+# L007 - Operators should not be at the end of a line
+[sqlfluff:rules:L007]  # Keywords
+operator_new_lines = after
+
+# L008 - Always use a single whitespace after a comma (fix)
+# L009 - Files will always end with a trailing newline
+
+# L010 - All keywords will use full upper case (fix)
+[sqlfluff:rules:L010]  # Keywords
+capitalisation_policy = upper
+
+# L011 - Always explicitly alias tables (fix)
+[sqlfluff:rules:L011]  # Aliasing
+aliasing = explicit
+
+# L012 - Do not have to explicitly alias all columns
+[sqlfluff:rules:L012]  # Aliasing
+aliasing = explicit
+
+# L013 - Always explicitly alias a column with an expression in it (fix)
+[sqlfluff:rules:L013]  # Aliasing
+allow_scalar = False
+
+# L014 - Always user full lower case for 'quoted identifiers' -> column refs. without an alias (fix)
+[sqlfluff:rules:L014]  # Unquoted identifiers
+extended_capitalisation_policy = lower
+
+# L015 - Always remove parenthesis when using DISTINCT to be clear that DISTINCT applies to all columns (fix)
+
+# L016 - Lines should be 120 characters of less. Comment lines should not be ignored (fix)
+[sqlfluff:rules:L016]
+ignore_comment_lines = False
+max_line_length = 120
+
+# L017 - There should not be whitespace between function name and brackets (fix)
+# L018 - Always align closing bracket of WITH to the WITH keyword (fix)
+
+# L019 - Always use trailing commas / commas at the end of the line (fix)
+[sqlfluff:rules:L019]
+comma_style = trailing
+
+# L020 - Table aliases will always be unique per statement
+# L021 - Remove any use of ambiguous DISTINCT and GROUP BY combinations. Lean on removing the GROUP BY.
+# L022 - Add blank lines after common table expressions (CTE) / WITH.
+# L023 - Always add a single whitespace after AS in a WITH clause (fix)
+
+[sqlfluff:rules:L026]
+force_enable = False
+
+# L027 - Always add references if more than one referenced table or view is used
+
+[sqlfluff:rules:L028]
+force_enable = False
+
+[sqlfluff:rules:L029]  # Keyword identifiers
+unquoted_identifiers_policy = aliases
+
+[sqlfluff:rules:L030]  # Function names
+capitalisation_policy = upper
+
+# L032 - We prefer use of join keys rather than USING
+# L034 - We prefer ordering of columns in select statements as (fix):
+# 1. wildcards
+# 2. single identifiers
+# 3. calculations and aggregates
+
+# L035 - Omit 'else NULL'; it is redundant (fix)
+# L036 - Move select targets / identifiers onto new lines each (fix)
+# L037 - When using ORDER BY, make the direction explicit (fix)
+
+# L038 - Never use trailing commas at the end of the SELECT clause
+[sqlfluff:rules:L038]
+select_clause_trailing_comma = forbid
+
+# L039 - Remove unnecessary whitespace (fix)
+
+[sqlfluff:rules:L040]  # Null & Boolean Literals
+capitalisation_policy = upper
+
+# L042 - Join clauses should not contain subqueries. Use common tables expressions (CTE) instead.
+[sqlfluff:rules:L042]
+# By default, allow subqueries in from clauses, but not join clauses.
+forbid_subquery_in = join
+
+# L043 - Reduce CASE WHEN conditions to COALESCE (fix)
+# L044 - Prefer a known number of columns along the path to the source data
+# L045 - Remove unused common tables expressions (CTE) / WITH statements (fix)
+# L046 - Jinja tags should have a single whitespace on both sides
+
+# L047 - Use COUNT(*) instead of COUNT(0) or COUNT(1) alternatives (fix)
+[sqlfluff:rules:L047]  # Consistent syntax to count all rows
+prefer_count_1 = False
+prefer_count_0 = False
+
+# L048 - Quoted literals should be surrounded by a single whitespace (fix)
+# L049 - Always use IS or IS NOT for comparisons with NULL (fix)
+```
+
+","[""src/sqlfluff/core/linter/linted_file.py""]","[""src/sqlfluff/core/linter/linted_file.py""]","[""src/sqlfluff/core/linter/linted_file.py""]",applied
+marshmallow-code__marshmallow-1359,marshmallow-code/marshmallow,https://github.com/marshmallow-code/marshmallow.git,b40a0f4e33823e6d0f341f7e8684e359a99060d1,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359\original,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359\patched,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1359\apply_patch.log,"3.0: DateTime fields cannot be used as inner field for List or Tuple fields
+Between releases 3.0.0rc8 and 3.0.0rc9, `DateTime` fields have started throwing an error when being instantiated as inner fields of container fields like `List` or `Tuple`. The snippet below works in <=3.0.0rc8 and throws the error below in >=3.0.0rc9 (and, worryingly, 3.0.0):
+
+```python
+from marshmallow import fields, Schema
+
+class MySchema(Schema):
+    times = fields.List(fields.DateTime())
+
+s = MySchema()
+```
+
+Traceback:
+```
+Traceback (most recent call last):
+  File ""test-mm.py"", line 8, in <module>
+    s = MySchema()
+  File ""/Users/victor/.pyenv/versions/marshmallow/lib/python3.6/site-packages/marshmallow/schema.py"", line 383, in __init__
+    self.fields = self._init_fields()
+  File ""/Users/victor/.pyenv/versions/marshmallow/lib/python3.6/site-packages/marshmallow/schema.py"", line 913, in _init_fields
+    self._bind_field(field_name, field_obj)
+  File ""/Users/victor/.pyenv/versions/marshmallow/lib/python3.6/site-packages/marshmallow/schema.py"", line 969, in _bind_field
+    field_obj._bind_to_schema(field_name, self)
+  File ""/Users/victor/.pyenv/versions/marshmallow/lib/python3.6/site-packages/marshmallow/fields.py"", line 636, in _bind_to_schema
+    self.inner._bind_to_schema(field_name, self)
+  File ""/Users/victor/.pyenv/versions/marshmallow/lib/python3.6/site-packages/marshmallow/fields.py"", line 1117, in _bind_to_schema
+    or getattr(schema.opts, self.SCHEMA_OPTS_VAR_NAME)
+AttributeError: 'List' object has no attribute 'opts'
+```
+
+It seems like it's treating the parent field as a Schema without checking that it is indeed a schema, so the `schema.opts` statement fails as fields don't have an `opts` attribute.
+","[""src/marshmallow/fields.py""]","[""src/marshmallow/fields.py""]","[""src/marshmallow/fields.py""]",applied
+marshmallow-code__marshmallow-1343,marshmallow-code/marshmallow,https://github.com/marshmallow-code/marshmallow.git,2be2d83a1a9a6d3d9b85804f3ab545cecc409bb0,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343\original,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343\patched,D:\Projects\COMP691\FlowGraphGen\data\marshmallow-code_marshmallow-1343\apply_patch.log,"[version 2.20.0] TypeError: 'NoneType' object is not subscriptable
+After update from version 2.19.5 to 2.20.0 I got error for code like:
+
+```python
+from marshmallow import Schema, fields, validates
+
+
+class Bar(Schema):
+    value = fields.String()
+
+    @validates('value')  # <- issue here
+    def validate_value(self, value):
+        pass
+
+
+class Foo(Schema):
+    bar = fields.Nested(Bar)
+
+
+sch = Foo()
+
+sch.validate({
+    'bar': 'invalid',
+})
+```
+
+```
+Traceback (most recent call last):
+  File ""/_/bug_mschema.py"", line 19, in <module>
+    'bar': 'invalid',
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/schema.py"", line 628, in validate
+    _, errors = self._do_load(data, many, partial=partial, postprocess=False)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/schema.py"", line 670, in _do_load
+    index_errors=self.opts.index_errors,
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/marshalling.py"", line 292, in deserialize
+    index=(index if index_errors else None)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/marshalling.py"", line 65, in call_and_store
+    value = getter_func(data)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/marshalling.py"", line 285, in <lambda>
+    data
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/fields.py"", line 265, in deserialize
+    output = self._deserialize(value, attr, data)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/fields.py"", line 465, in _deserialize
+    data, errors = self.schema.load(value)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/schema.py"", line 588, in load
+    result, errors = self._do_load(data, many, partial=partial, postprocess=True)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/schema.py"", line 674, in _do_load
+    self._invoke_field_validators(unmarshal, data=result, many=many)
+  File ""/_/env/lib/python3.7/site-packages/marshmallow/schema.py"", line 894, in _invoke_field_validators
+    value = data[field_obj.attribute or field_name]
+TypeError: 'NoneType' object is not subscriptable
+```
+","[""src/marshmallow/schema.py""]","[""src/marshmallow/schema.py""]","[""src/marshmallow/schema.py""]",applied
+pvlib__pvlib-python-1707,pvlib/pvlib-python,https://github.com/pvlib/pvlib-python.git,40e9e978c170bdde4eeee1547729417665dbc34c,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707\original,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707\patched,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1707\apply_patch.log,"regression: iam.physical returns nan for aoi > 90° when n = 1
+**Describe the bug**
+For pvlib==0.9.5, when n = 1 (no reflection) and aoi > 90°, we get nan as result.
+
+**To Reproduce**
+```python
+import pvlib
+pvlib.iam.physical(aoi=100, n=1)
+```
+returns `nan`.
+
+**Expected behavior**
+The result should be `0`, as it was for pvlib <= 0.9.4.
+
+
+**Versions:**
+ - ``pvlib.__version__``: '0.9.5'
+ - ``pandas.__version__``:  '1.5.3'
+ - python: 3.10.4
+
+","[""pvlib/iam.py""]","[""pvlib/iam.py""]","[""pvlib/iam.py""]",applied
+pvlib__pvlib-python-1072,pvlib/pvlib-python,https://github.com/pvlib/pvlib-python.git,04a523fafbd61bc2e49420963b84ed8e2bd1b3cf,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072\original,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072\patched,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1072\apply_patch.log,"temperature.fuentes errors when given tz-aware inputs on pandas>=1.0.0
+**Describe the bug**
+When the weather timeseries inputs to `temperature.fuentes` have tz-aware index, an internal call to `np.diff(index)` returns an array of `Timedelta` objects instead of an array of nanosecond ints, throwing an error immediately after.  The error only happens when using pandas>=1.0.0; using 0.25.3 runs successfully, but emits the warning:
+
+```
+  /home/kevin/anaconda3/envs/pvlib-dev/lib/python3.7/site-packages/numpy/lib/function_base.py:1243: FutureWarning: Converting timezone-aware DatetimeArray to timezone-naive ndarray with 'datetime64[ns]' dtype. In the future, this will return an ndarray with 'object' dtype where each element is a 'pandas.Timestamp' with the correct 'tz'.
+  	To accept the future behavior, pass 'dtype=object'.
+  	To keep the old behavior, pass 'dtype=""datetime64[ns]""'.
+    a = asanyarray(a)
+```
+
+**To Reproduce**
+```python
+In [1]: import pvlib
+   ...: import pandas as pd
+   ...: 
+   ...: index_naive = pd.date_range('2019-01-01', freq='h', periods=3)
+   ...: 
+   ...: kwargs = {
+   ...:     'poa_global': pd.Series(1000, index_naive),
+   ...:     'temp_air': pd.Series(20, index_naive),
+   ...:     'wind_speed': pd.Series(1, index_naive),
+   ...:     'noct_installed': 45
+   ...: }
+   ...: 
+
+In [2]: print(pvlib.temperature.fuentes(**kwargs))
+2019-01-01 00:00:00    47.85
+2019-01-01 01:00:00    50.85
+2019-01-01 02:00:00    50.85
+Freq: H, Name: tmod, dtype: float64
+
+In [3]: kwargs['poa_global'].index = index_naive.tz_localize('UTC')
+   ...: print(pvlib.temperature.fuentes(**kwargs))
+   ...: 
+Traceback (most recent call last):
+
+  File ""<ipython-input-3-ff99badadc91>"", line 2, in <module>
+    print(pvlib.temperature.fuentes(**kwargs))
+
+  File ""/home/kevin/anaconda3/lib/python3.7/site-packages/pvlib/temperature.py"", line 602, in fuentes
+    timedelta_hours = np.diff(poa_global.index).astype(float) / 1e9 / 60 / 60
+
+TypeError: float() argument must be a string or a number, not 'Timedelta'
+```
+
+**Expected behavior**
+`temperature.fuentes` should work with both tz-naive and tz-aware inputs.
+
+
+**Versions:**
+ - ``pvlib.__version__``: 0.8.0
+ - ``pandas.__version__``: 1.0.0+
+ - python: 3.7.4 (default, Aug 13 2019, 20:35:49) \n[GCC 7.3.0]
+
+
+","[""pvlib/temperature.py""]","[""pvlib/temperature.py""]","[""pvlib/temperature.py""]",applied
+pvlib__pvlib-python-1606,pvlib/pvlib-python,https://github.com/pvlib/pvlib-python.git,c78b50f4337ecbe536a961336ca91a1176efc0e8,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606\original,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606\patched,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1606\apply_patch.log,"golden-section search fails when upper and lower bounds are equal
+**Describe the bug**
+I was using pvlib for sometime now and until now I was always passing a big dataframe containing readings of a long period. Because of some changes in our software architecture, I need to pass the weather readings as a single reading (a dataframe with only one row) and I noticed that for readings that GHI-DHI are zero pvlib fails to calculate the output and returns below error while the same code executes correctly with weather information that has non-zero GHI-DHI:
+```python
+import os
+import pathlib
+import time
+import json
+from datetime import datetime
+from time import mktime, gmtime
+
+import pandas as pd
+
+from pvlib import pvsystem
+from pvlib import location as pvlocation
+from pvlib import modelchain
+from pvlib.temperature import TEMPERATURE_MODEL_PARAMETERS as PARAMS # not used -- to remove
+from pvlib.bifacial.pvfactors import pvfactors_timeseries
+from pvlib.temperature import TEMPERATURE_MODEL_PARAMETERS
+
+class PV:
+    def pv_transform_time(self, val):
+        # tt = gmtime(val / 1000)
+        tt = gmtime(val)
+        dd = datetime.fromtimestamp(mktime(tt))
+        timestamp = pd.Timestamp(dd)
+        return timestamp
+
+    def __init__(self, model: str, inverter: str, latitude: float, longitude: float, **kwargs):
+        # super().__init__(**kwargs)
+
+        temperature_model_parameters = TEMPERATURE_MODEL_PARAMETERS[""sapm""][
+            ""open_rack_glass_glass""
+        ]
+        # Load the database of CEC module model parameters
+        modules = pvsystem.retrieve_sam(""cecmod"")
+        # Load the database of CEC inverter model parameters
+        inverters = pvsystem.retrieve_sam(""cecinverter"")
+
+
+        # A bare bone PV simulator
+
+        # Load the database of CEC module model parameters
+        modules = pvsystem.retrieve_sam('cecmod')
+        inverters = pvsystem.retrieve_sam('cecinverter')
+        module_parameters = modules[model]
+        inverter_parameters = inverters[inverter]
+
+        location = pvlocation.Location(latitude=latitude, longitude=longitude)
+        system = pvsystem.PVSystem(module_parameters=module_parameters, inverter_parameters=inverter_parameters, temperature_model_parameters=temperature_model_parameters)
+        self.modelchain = modelchain.ModelChain(system, location, aoi_model='no_loss', spectral_model=""no_loss"")
+
+    def process(self, data):
+        weather = pd.read_json(data)
+        # print(f""raw_weather: {weather}"")
+        weather.drop('time.1', axis=1, inplace=True)
+        weather['time'] = pd.to_datetime(weather['time']).map(datetime.timestamp) # --> this works for the new process_weather code and also the old weather file
+        weather[""time""] = weather[""time""].apply(self.pv_transform_time)
+        weather.index = weather[""time""]
+        # print(f""weather: {weather}"")
+        # print(weather.dtypes)
+        # print(weather['ghi'][0])
+        # print(type(weather['ghi'][0]))
+
+        # simulate
+        self.modelchain.run_model(weather)
+        # print(self.modelchain.results.ac.to_frame().to_json())
+        print(self.modelchain.results.ac)
+
+
+# good data
+good_data = ""{\""time\"":{\""12\"":\""2010-01-01 13:30:00+00:00\""},\""ghi\"":{\""12\"":36},\""dhi\"":{\""12\"":36},\""dni\"":{\""12\"":0},\""Tamb\"":{\""12\"":8.0},\""WindVel\"":{\""12\"":5.0},\""WindDir\"":{\""12\"":270},\""time.1\"":{\""12\"":\""2010-01-01 13:30:00+00:00\""}}""
+
+# data that causes error
+data = ""{\""time\"":{\""4\"":\""2010-01-01 05:30:00+00:00\""},\""ghi\"":{\""4\"":0},\""dhi\"":{\""4\"":0},\""dni\"":{\""4\"":0},\""Tamb\"":{\""4\"":8.0},\""WindVel\"":{\""4\"":4.0},\""WindDir\"":{\""4\"":240},\""time.1\"":{\""4\"":\""2010-01-01 05:30:00+00:00\""}}""
+p1 = PV(model=""Trina_Solar_TSM_300DEG5C_07_II_"", inverter=""ABB__MICRO_0_25_I_OUTD_US_208__208V_"", latitude=51.204483, longitude=5.265472)
+p1.process(good_data)
+print(""====="")
+p1.process(data)
+```
+Error:
+```log
+$ python3 ./tmp-pv.py 
+time
+2010-01-01 13:30:00    7.825527
+dtype: float64
+=====
+/home/user/.local/lib/python3.10/site-packages/pvlib/tools.py:340: RuntimeWarning: divide by zero encountered in divide
+  np.trunc(np.log(atol / (df['VH'] - df['VL'])) / np.log(phim1)))
+Traceback (most recent call last):
+  File ""/home/user/workspace/enorch/simulator/simulator_processor/src/pv/./tmp-pv.py"", line 88, in <module>
+    p1.process(data)
+  File ""/home/user/workspace/enorch/simulator/simulator_processor/src/pv/./tmp-pv.py"", line 75, in process
+    self.modelchain.run_model(weather)
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/modelchain.py"", line 1770, in run_model
+    self._run_from_effective_irrad(weather)
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/modelchain.py"", line 1858, in _run_from_effective_irrad
+    self.dc_model()
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/modelchain.py"", line 790, in cec
+    return self._singlediode(self.system.calcparams_cec)
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/modelchain.py"", line 772, in _singlediode
+    self.results.dc = tuple(itertools.starmap(
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/pvsystem.py"", line 931, in singlediode
+    return singlediode(photocurrent, saturation_current,
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/pvsystem.py"", line 2826, in singlediode
+    out = _singlediode._lambertw(
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/singlediode.py"", line 651, in _lambertw
+    p_mp, v_mp = _golden_sect_DataFrame(params, 0., v_oc * 1.14,
+  File ""/home/user/.local/lib/python3.10/site-packages/pvlib/tools.py"", line 364, in _golden_sect_DataFrame
+    raise Exception(""Iterations exceeded maximum. Check that func"",
+Exception: ('Iterations exceeded maximum. Check that func', ' is not NaN in (lower, upper)')
+```
+
+I have to mention that for now the workaround that I am using is to pass the weather data as a dataframe with two rows, the first row is a good weather data that pvlib can process and the second row is the incoming weather reading (I can also post that code if you want).
+
+**Expected behavior**
+PVlib should have consistent behavior and regardless of GHI-DHI readings.
+
+**Versions:**
+```python
+>>> import pvlib
+>>> import pandas
+>>> pvlib.__version__
+'0.9.1'
+>>> pandas.__version__
+'1.4.3'
+``` 
+ - python: 3.10.6
+- OS: Ubuntu 22.04.1 LTS
+","[""pvlib/tools.py""]","[""pvlib/tools.py""]","[""pvlib/tools.py""]",applied
+pvlib__pvlib-python-1854,pvlib/pvlib-python,https://github.com/pvlib/pvlib-python.git,27a3a07ebc84b11014d3753e4923902adf9a38c0,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854\original,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854\patched,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1854\apply_patch.log,"PVSystem with single Array generates an error
+**Is your feature request related to a problem? Please describe.**
+
+When a PVSystem has a single Array, you can't assign just the Array instance when constructing the PVSystem.
+
+```
+mount = pvlib.pvsystem.FixedMount(surface_tilt=35, surface_azimuth=180)
+array = pvlib.pvsystem.Array(mount=mount)
+pv = pvlib.pvsystem.PVSystem(arrays=array)
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-13-f5424e3db16a> in <module>
+      3 mount = pvlib.pvsystem.FixedMount(surface_tilt=35, surface_azimuth=180)
+      4 array = pvlib.pvsystem.Array(mount=mount)
+----> 5 pv = pvlib.pvsystem.PVSystem(arrays=array)
+
+~\anaconda3\lib\site-packages\pvlib\pvsystem.py in __init__(self, arrays, surface_tilt, surface_azimuth, albedo, surface_type, module, module_type, module_parameters, temperature_model_parameters, modules_per_string, strings_per_inverter, inverter, inverter_parameters, racking_model, losses_parameters, name)
+    251                 array_losses_parameters,
+    252             ),)
+--> 253         elif len(arrays) == 0:
+    254             raise ValueError(""PVSystem must have at least one Array. ""
+    255                              ""If you want to create a PVSystem instance ""
+
+TypeError: object of type 'Array' has no len()
+
+```
+
+Not a bug per se, since the PVSystem docstring requests that `arrays` be iterable. Still, a bit inconvenient to have to do this
+
+```
+mount = pvlib.pvsystem.FixedMount(surface_tilt=35, surface_azimuth=180)
+array = pvlib.pvsystem.Array(mount=mount)
+pv = pvlib.pvsystem.PVSystem(arrays=[array])
+```
+
+**Describe the solution you'd like**
+Handle `arrays=array` where `array` is an instance of `Array`
+
+**Describe alternatives you've considered**
+Status quo - either make the single Array into a list, or use the PVSystem kwargs.
+
+","[""pvlib/pvsystem.py""]","[""pvlib/pvsystem.py""]","[""pvlib/pvsystem.py""]",applied
+pvlib__pvlib-python-1154,pvlib/pvlib-python,https://github.com/pvlib/pvlib-python.git,0b8f24c265d76320067a5ee908a57d475cd1bb24,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154\original,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154\patched,D:\Projects\COMP691\FlowGraphGen\data\pvlib_pvlib-python-1154\apply_patch.log,"pvlib.irradiance.reindl() model generates NaNs when GHI = 0
+**Describe the bug**
+The reindl function should give zero sky diffuse when GHI is zero. Instead it generates NaN or Inf values due to ""term3"" having a quotient that divides by GHI.  
+
+**Expected behavior**
+The reindl function should result in zero sky diffuse when GHI is zero.
+
+
+pvlib.irradiance.reindl() model generates NaNs when GHI = 0
+**Describe the bug**
+The reindl function should give zero sky diffuse when GHI is zero. Instead it generates NaN or Inf values due to ""term3"" having a quotient that divides by GHI.  
+
+**Expected behavior**
+The reindl function should result in zero sky diffuse when GHI is zero.
+
+
+","[""pvlib/irradiance.py""]","[""pvlib/irradiance.py""]","[""pvlib/irradiance.py""]",applied
+pylint-dev__astroid-1978,pylint-dev/astroid,https://github.com/pylint-dev/astroid.git,0c9ab0fe56703fa83c73e514a1020d398d23fa7f,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978\original,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978\patched,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1978\apply_patch.log,"Deprecation warnings from numpy
+### Steps to reproduce
+
+1. Run pylint over the following test case:
+
+```
+""""""Test case""""""
+
+import numpy as np
+value = np.random.seed(1234)
+```
+
+### Current behavior
+```
+/home/bje/source/nemo/myenv/lib/python3.10/site-packages/astroid/raw_building.py:470: FutureWarning: In the future `np.long` will be defined as the corresponding NumPy scalar.  (This may have returned Python scalars in past versions.
+  getattr(sys.modules[modname], name)
+/home/bje/source/nemo/myenv/lib/python3.10/site-packages/astroid/raw_building.py:470: FutureWarning: In the future `np.long` will be defined as the corresponding NumPy scalar.  (This may have returned Python scalars in past versions.
+  getattr(sys.modules[modname], name)
+```
+
+### Expected behavior
+There should be no future warnings.
+
+### python -c ""from astroid import __pkginfo__; print(__pkginfo__.version)"" output
+2.12.13
+","[""astroid/raw_building.py""]","[""astroid/raw_building.py""]","[""astroid/raw_building.py""]",applied
+pylint-dev__astroid-1333,pylint-dev/astroid,https://github.com/pylint-dev/astroid.git,d2a5b3c7b1e203fec3c7ca73c30eb1785d3d4d0a,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333\original,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333\patched,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1333\apply_patch.log,"astroid 2.9.1 breaks pylint with missing __init__.py: F0010: error while code parsing: Unable to load file __init__.py
+### Steps to reproduce
+> Steps provided are for Windows 11, but initial problem found in Ubuntu 20.04
+
+> Update 2022-01-04: Corrected repro steps and added more environment details
+
+1. Set up simple repo with following structure (all files can be empty):
+```
+root_dir/
+|--src/
+|----project/ # Notice the missing __init__.py
+|------file.py # It can be empty, but I added `import os` at the top
+|----__init__.py
+```
+2. Open a command prompt
+3. `cd root_dir`
+4. `python -m venv venv`
+5. `venv/Scripts/activate`
+6. `pip install pylint astroid==2.9.1` # I also repro'd on the latest, 2.9.2
+7. `pylint src/project` # Updated from `pylint src`
+8. Observe failure:
+```
+src\project\__init__.py:1:0: F0010: error while code parsing: Unable to load file src\project\__init__.py:
+```
+
+### Current behavior
+Fails with `src\project\__init__.py:1:0: F0010: error while code parsing: Unable to load file src\project\__init__.py:`
+
+### Expected behavior
+Does not fail with error.
+> If you replace step 6 with `pip install pylint astroid==2.9.0`, you get no failure with an empty output - since no files have content
+
+### `python -c ""from astroid import __pkginfo__; print(__pkginfo__.version)""` output
+2.9.1
+
+`python 3.9.1`
+`pylint 2.12.2 `
+
+
+
+This issue has been observed with astroid `2.9.1` and `2.9.2`
+","[""astroid/modutils.py""]","[""astroid/modutils.py""]","[""astroid/modutils.py""]",applied
+pylint-dev__astroid-1196,pylint-dev/astroid,https://github.com/pylint-dev/astroid.git,39c2a9805970ca57093d32bbaf0e6a63e05041d8,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196\original,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196\patched,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1196\apply_patch.log,"getitem does not infer the actual unpacked value
+When trying to call `Dict.getitem()` on a context where we have a dict unpacking of anything beside a real dict, astroid currently raises an `AttributeError: 'getitem'`, which has 2 problems:
+
+- The object might be a reference against something constant, this pattern is usually seen when we have different sets of dicts that extend each other, and all of their values are inferrable. 
+- We can have something that is uninferable, but in that case instead of an `AttributeError` I think it makes sense to raise the usual `AstroidIndexError` which is supposed to be already handled by the downstream.
+
+
+Here is a short reproducer;
+
+```py
+from astroid import parse
+
+
+source = """"""
+X = {
+    'A': 'B'
+}
+
+Y = {
+    **X
+}
+
+KEY = 'A'
+""""""
+
+tree = parse(source)
+
+first_dict = tree.body[0].value
+second_dict = tree.body[1].value
+key = tree.body[2].value
+
+print(f'{first_dict.getitem(key).value = }')
+print(f'{second_dict.getitem(key).value = }')
+
+
+```
+
+The current output;
+
+```
+ $ python t1.py                                                                                                 3ms
+first_dict.getitem(key).value = 'B'
+Traceback (most recent call last):
+  File ""/home/isidentical/projects/astroid/t1.py"", line 23, in <module>
+    print(f'{second_dict.getitem(key).value = }')
+  File ""/home/isidentical/projects/astroid/astroid/nodes/node_classes.py"", line 2254, in getitem
+    return value.getitem(index, context)
+AttributeError: 'Name' object has no attribute 'getitem'
+```
+
+Expeceted output;
+```
+ $ python t1.py                                                                                                 4ms
+first_dict.getitem(key).value = 'B'
+second_dict.getitem(key).value = 'B'
+
+```
+
+","[""astroid/nodes/node_classes.py""]","[""astroid/nodes/node_classes.py""]","[""astroid/nodes/node_classes.py""]",applied
+pylint-dev__astroid-1866,pylint-dev/astroid,https://github.com/pylint-dev/astroid.git,6cf238d089cf4b6753c94cfc089b4a47487711e5,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866\original,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866\patched,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1866\apply_patch.log,"""TypeError: unsupported format string passed to NoneType.__format__"" while running type inference in version 2.12.x
+### Steps to reproduce
+
+I have no concise reproducer. Exception happens every time I run pylint on some internal code, with astroid 2.12.10 and 2.12.12 (debian bookworm). It does _not_ happen with earlier versions of astroid (not with version 2.9). The pylinted code itself is ""valid"", it runs in production here.
+
+### Current behavior
+
+When running pylint on some code, I get this exception:
+```
+Traceback (most recent call last):
+  File ""/usr/lib/python3/dist-packages/pylint/utils/ast_walker.py"", line 90, in walk
+    callback(astroid)
+  File ""/usr/lib/python3/dist-packages/pylint/checkers/classes/special_methods_checker.py"", line 183, in visit_functiondef
+    inferred = _safe_infer_call_result(node, node)
+  File ""/usr/lib/python3/dist-packages/pylint/checkers/classes/special_methods_checker.py"", line 42, in _safe_infer_call_result
+    value = next(inferit)
+  File ""/usr/lib/python3/dist-packages/astroid/nodes/scoped_nodes/scoped_nodes.py"", line 1749, in infer_call_result
+    yield from returnnode.value.infer(context)
+  File ""/usr/lib/python3/dist-packages/astroid/nodes/node_ng.py"", line 159, in infer
+    results = list(self._explicit_inference(self, context, **kwargs))
+  File ""/usr/lib/python3/dist-packages/astroid/inference_tip.py"", line 45, in _inference_tip_cached
+    result = _cache[func, node] = list(func(*args, **kwargs))
+  File ""/usr/lib/python3/dist-packages/astroid/brain/brain_builtin_inference.py"", line 956, in _infer_str_format_call
+    formatted_string = format_template.format(*pos_values, **keyword_values)
+TypeError: unsupported format string passed to NoneType.__format__
+```
+
+### Expected behavior
+
+TypeError exception should not happen
+
+### `python -c ""from astroid import __pkginfo__; print(__pkginfo__.version)""` output
+
+2.12.10,
+2.12.12
+","[""astroid/brain/brain_builtin_inference.py""]","[""astroid/brain/brain_builtin_inference.py""]","[""astroid/brain/brain_builtin_inference.py""]",applied
+pylint-dev__astroid-1268,pylint-dev/astroid,https://github.com/pylint-dev/astroid.git,ce5cbce5ba11cdc2f8139ade66feea1e181a7944,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268\original,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268\patched,D:\Projects\COMP691\FlowGraphGen\data\pylint-dev_astroid-1268\apply_patch.log,"'AsStringVisitor' object has no attribute 'visit_unknown'
+```python
+>>> import astroid
+>>> astroid.nodes.Unknown().as_string()
+Traceback (most recent call last):
+  File ""<stdin>"", line 1, in <module>
+  File ""/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/node_ng.py"", line 609, in as_string
+    return AsStringVisitor()(self)
+  File ""/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/as_string.py"", line 56, in __call__
+    return node.accept(self).replace(DOC_NEWLINE, ""\n"")
+  File ""/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/node_ng.py"", line 220, in accept
+    func = getattr(visitor, ""visit_"" + self.__class__.__name__.lower())
+AttributeError: 'AsStringVisitor' object has no attribute 'visit_unknown'
+>>> 
+```
+### `python -c ""from astroid import __pkginfo__; print(__pkginfo__.version)""` output
+
+2.8.6-dev0
+","[""astroid/nodes/as_string.py""]","[""astroid/nodes/as_string.py""]","[""astroid/nodes/as_string.py""]",applied
+pyvista__pyvista-4315,pyvista/pyvista,https://github.com/pyvista/pyvista.git,db6ee8dd4a747b8864caae36c5d05883976a3ae5,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315\original,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315\patched,D:\Projects\COMP691\FlowGraphGen\data\pyvista_pyvista-4315\apply_patch.log,"Rectilinear grid does not allow Sequences as inputs
+### Describe the bug, what's wrong, and what you expected.
+
+Rectilinear grid gives an error when `Sequence`s are passed in, but `ndarray` are ok.
+
+### Steps to reproduce the bug.
+
+This doesn't work
+```python
+import pyvista as pv
+pv.RectilinearGrid([0, 1], [0, 1], [0, 1])
+```
+
+This works
+```py
+import pyvista as pv
+import numpy as np
+pv.RectilinearGrid(np.ndarray([0, 1]), np.ndarray([0, 1]), np.ndarray([0, 1]))
+```
+### System Information
+
+```shell
+--------------------------------------------------------------------------------
+  Date: Wed Apr 19 20:15:10 2023 UTC
+
+                OS : Linux
+            CPU(s) : 2
+           Machine : x86_64
+      Architecture : 64bit
+       Environment : IPython
+        GPU Vendor : Mesa/X.org
+      GPU Renderer : llvmpipe (LLVM 11.0.1, 256 bits)
+       GPU Version : 4.5 (Core Profile) Mesa 20.3.5
+
+  Python 3.11.2 (main, Mar 23 2023, 17:12:29) [GCC 10.2.1 20210110]
+
+           pyvista : 0.38.5
+               vtk : 9.2.6
+             numpy : 1.24.2
+           imageio : 2.27.0
+            scooby : 0.7.1
+             pooch : v1.7.0
+        matplotlib : 3.7.1
+           IPython : 8.12.0
+--------------------------------------------------------------------------------
+```
+
+
+### Screenshots
+
+_No response_
+","[""pyvista/core/grid.py""]","[""pyvista/core/grid.py""]","[""pyvista/core/grid.py""]",applied
+pydicom__pydicom-1694,pydicom/pydicom,https://github.com/pydicom/pydicom.git,f8cf45b6c121e5a4bf4a43f71aba3bc64af3db9c,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694\original,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694\patched,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1694\apply_patch.log,"Dataset.to_json_dict can still generate exceptions when suppress_invalid_tags=True
+**Describe the bug**
+I'm using `Dataset.to_json_dict(suppress_invalid_tags=True)` and can live with losing invalid tags.  Unfortunately, I can still trigger an exception with something like  `2.0` in an `IS` field.
+
+**Expected behavior**
+to_json_dict shouldn't throw an error about an invalid tag when `suppress_invalid_tags` is enabled.
+
+My thought was simply to move the `data_element = self[key]` into the try/catch block that's right after it.
+
+**Steps To Reproduce**
+
+Traceback:
+```
+  File ""dicom.py"", line 143, in create_dict
+    json_ds = ds.to_json_dict(suppress_invalid_tags=True)
+  File ""/usr/lib/python3/dist-packages/pydicom/dataset.py"", line 2495, in to_json_dict
+    data_element = self[key]
+  File ""/usr/lib/python3/dist-packages/pydicom/dataset.py"", line 939, in __getitem__
+    self[tag] = DataElement_from_raw(elem, character_set, self)
+  File ""/usr/lib/python3/dist-packages/pydicom/dataelem.py"", line 859, in DataElement_from_raw
+    value = convert_value(vr, raw, encoding)
+  File ""/usr/lib/python3/dist-packages/pydicom/values.py"", line 771, in convert_value
+    return converter(byte_string, is_little_endian, num_format)
+  File ""/usr/lib/python3/dist-packages/pydicom/values.py"", line 348, in convert_IS_string
+    return MultiString(num_string, valtype=pydicom.valuerep.IS)
+  File ""/usr/lib/python3/dist-packages/pydicom/valuerep.py"", line 1213, in MultiString
+    return valtype(splitup[0])
+  File ""/usr/lib/python3/dist-packages/pydicom/valuerep.py"", line 1131, in __new__
+    raise TypeError(""Could not convert value to integer without loss"")
+TypeError: Could not convert value to integer without loss
+```
+
+**Your environment**
+python 3.7, pydicom 2.3
+
+
+","[""pydicom/dataset.py""]","[""pydicom/dataset.py""]","[""pydicom/dataset.py""]",applied
+pydicom__pydicom-1413,pydicom/pydicom,https://github.com/pydicom/pydicom.git,f909c76e31f759246cec3708dadd173c5d6e84b1,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413\original,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413\patched,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1413\apply_patch.log,"Error : a bytes-like object is required, not 'MultiValue'
+Hello,
+
+I am getting following error while updating the tag LongTrianglePointIndexList (0066,0040),
+**TypeError: a bytes-like object is required, not 'MultiValue'**
+
+I noticed that the error  gets produced only when the VR is given as ""OL"" , works fine with ""OB"", ""OF"" etc.
+
+sample code (assume 'lineSeq' is the dicom dataset sequence):
+```python
+import pydicom
+import array
+data=list(range(1,10))
+data=array.array('H', indexData).tostring()  # to convert to unsigned short
+lineSeq.add_new(0x00660040, 'OL', data)   
+ds.save_as(""mydicom"")
+```
+outcome: **TypeError: a bytes-like object is required, not 'MultiValue'**
+
+using version - 2.0.0.0
+
+Any help is appreciated.
+
+Thank you
+","[""pydicom/dataelem.py""]","[""pydicom/dataelem.py""]","[""pydicom/dataelem.py""]",applied
+pydicom__pydicom-901,pydicom/pydicom,https://github.com/pydicom/pydicom.git,3746878d8edf1cbda6fbcf35eec69f9ba79301ca,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901\original,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901\patched,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-901\apply_patch.log,"pydicom should not define handler, formatter and log level.
+The `config` module (imported when pydicom is imported) defines a handler and set the log level for the pydicom logger. This should not be the case IMO. It should be the responsibility of the client code of pydicom to configure the logging module to its convenience. Otherwise one end up having multiple logs record as soon as pydicom is imported:
+
+Example:
+```
+Could not import pillow
+2018-03-25 15:27:29,744 :: DEBUG :: pydicom 
+  Could not import pillow
+Could not import jpeg_ls
+2018-03-25 15:27:29,745 :: DEBUG :: pydicom 
+  Could not import jpeg_ls
+Could not import gdcm
+2018-03-25 15:27:29,745 :: DEBUG :: pydicom 
+  Could not import gdcm
+``` 
+Or am I missing something?
+","[""pydicom/config.py""]","[""pydicom/config.py""]","[""pydicom/config.py""]",applied
+pydicom__pydicom-1139,pydicom/pydicom,https://github.com/pydicom/pydicom.git,b9fb05c177b685bf683f7f57b2d57374eb7d882d,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139\original,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139\patched,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1139\apply_patch.log,"Make PersonName3 iterable
+```python
+from pydicom import Dataset
+
+ds = Dataset()
+ds.PatientName = 'SomeName'
+
+'S' in ds.PatientName
+```
+```
+Traceback (most recent call last):
+  File ""<stdin>"", line 1, in <module>
+TypeError: argument of type 'PersonName3' is not iterable
+```
+
+I'm not really sure if this is intentional or if PN elements should support `str` methods. And yes I know I can `str(ds.PatientName)` but it's a bit silly, especially when I keep having to write exceptions to my element iterators just for PN elements.
+","[""pydicom/valuerep.py""]","[""pydicom/valuerep.py""]","[""pydicom/valuerep.py""]",applied
+pydicom__pydicom-1256,pydicom/pydicom,https://github.com/pydicom/pydicom.git,49a3da4a3d9c24d7e8427a25048a1c7d5c4f7724,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256\patch.diff,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256\problem_statement.txt,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256\original,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256\patched,D:\Projects\COMP691\FlowGraphGen\data\pydicom_pydicom-1256\apply_patch.log,"from_json does not correctly convert BulkDataURI's in SQ data elements
+**Describe the bug**
+When a DICOM object contains large data elements in SQ elements and is converted to JSON, those elements are correctly turned into BulkDataURI's. However, when the JSON is converted back to DICOM using from_json, the BulkDataURI's in SQ data elements are not converted back and warnings are thrown.
+
+**Expected behavior**
+The BulkDataURI's in SQ data elements get converted back correctly.
+
+**Steps To Reproduce**
+Take the `waveform_ecg.dcm` in the test data, convert it to JSON, and then convert the JSON to DICOM
+
+**Your environment**
+module       | version
+------       | -------
+platform     | macOS-10.15.7-x86_64-i386-64bit
+Python       | 3.8.2 (v3.8.2:7b3ab5921f, Feb 24 2020, 17:52:18)  [Clang 6.0 (clang-600.0.57)]
+pydicom      | 2.1.0
+gdcm         | _module not found_
+jpeg_ls      | _module not found_
+numpy        | _module not found_
+PIL          | _module not found_
+
+The problem is in `jsonrep.py` at line 227. I plan on submitting a pull-request today for this.
+","[""pydicom/jsonrep.py""]","[""pydicom/jsonrep.py""]","[""pydicom/jsonrep.py""]",applied

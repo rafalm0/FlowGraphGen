@@ -1,0 +1,17 @@
+{
+  "instance_id": "pydicom__pydicom-1139",
+  "repo": "pydicom/pydicom",
+  "repo_url": "https://github.com/pydicom/pydicom.git",
+  "base_commit": "b9fb05c177b685bf683f7f57b2d57374eb7d882d",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pydicom_pydicom-1139\\apply_patch.log",
+  "problem_statement": "Make PersonName3 iterable\n```python\r\nfrom pydicom import Dataset\r\n\r\nds = Dataset()\r\nds.PatientName = 'SomeName'\r\n\r\n'S' in ds.PatientName\r\n```\r\n```\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\nTypeError: argument of type 'PersonName3' is not iterable\r\n```\r\n\r\nI'm not really sure if this is intentional or if PN elements should support `str` methods. And yes I know I can `str(ds.PatientName)` but it's a bit silly, especially when I keep having to write exceptions to my element iterators just for PN elements.\n",
+  "changed_files": "[\"pydicom/valuerep.py\"]",
+  "original_files_saved": "[\"pydicom/valuerep.py\"]",
+  "patched_files_saved": "[\"pydicom/valuerep.py\"]",
+  "status": "applied"
+}

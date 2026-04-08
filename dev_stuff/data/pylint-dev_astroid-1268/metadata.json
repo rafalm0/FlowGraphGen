@@ -1,0 +1,17 @@
+{
+  "instance_id": "pylint-dev__astroid-1268",
+  "repo": "pylint-dev/astroid",
+  "repo_url": "https://github.com/pylint-dev/astroid.git",
+  "base_commit": "ce5cbce5ba11cdc2f8139ade66feea1e181a7944",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1268\\apply_patch.log",
+  "problem_statement": "'AsStringVisitor' object has no attribute 'visit_unknown'\n```python\r\n>>> import astroid\r\n>>> astroid.nodes.Unknown().as_string()\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/node_ng.py\", line 609, in as_string\r\n    return AsStringVisitor()(self)\r\n  File \"/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/as_string.py\", line 56, in __call__\r\n    return node.accept(self).replace(DOC_NEWLINE, \"\\n\")\r\n  File \"/Users/tusharsadhwani/code/marvin-python/venv/lib/python3.9/site-packages/astroid/nodes/node_ng.py\", line 220, in accept\r\n    func = getattr(visitor, \"visit_\" + self.__class__.__name__.lower())\r\nAttributeError: 'AsStringVisitor' object has no attribute 'visit_unknown'\r\n>>> \r\n```\r\n### `python -c \"from astroid import __pkginfo__; print(__pkginfo__.version)\"` output\r\n\r\n2.8.6-dev0\n",
+  "changed_files": "[\"astroid/nodes/as_string.py\"]",
+  "original_files_saved": "[\"astroid/nodes/as_string.py\"]",
+  "patched_files_saved": "[\"astroid/nodes/as_string.py\"]",
+  "status": "applied"
+}

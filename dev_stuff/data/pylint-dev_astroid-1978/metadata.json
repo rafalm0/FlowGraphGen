@@ -1,0 +1,17 @@
+{
+  "instance_id": "pylint-dev__astroid-1978",
+  "repo": "pylint-dev/astroid",
+  "repo_url": "https://github.com/pylint-dev/astroid.git",
+  "base_commit": "0c9ab0fe56703fa83c73e514a1020d398d23fa7f",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pylint-dev_astroid-1978\\apply_patch.log",
+  "problem_statement": "Deprecation warnings from numpy\n### Steps to reproduce\r\n\r\n1. Run pylint over the following test case:\r\n\r\n```\r\n\"\"\"Test case\"\"\"\r\n\r\nimport numpy as np\r\nvalue = np.random.seed(1234)\r\n```\r\n\r\n### Current behavior\r\n```\r\n/home/bje/source/nemo/myenv/lib/python3.10/site-packages/astroid/raw_building.py:470: FutureWarning: In the future `np.long` will be defined as the corresponding NumPy scalar.  (This may have returned Python scalars in past versions.\r\n  getattr(sys.modules[modname], name)\r\n/home/bje/source/nemo/myenv/lib/python3.10/site-packages/astroid/raw_building.py:470: FutureWarning: In the future `np.long` will be defined as the corresponding NumPy scalar.  (This may have returned Python scalars in past versions.\r\n  getattr(sys.modules[modname], name)\r\n```\r\n\r\n### Expected behavior\r\nThere should be no future warnings.\r\n\r\n### python -c \"from astroid import __pkginfo__; print(__pkginfo__.version)\" output\r\n2.12.13\n",
+  "changed_files": "[\"astroid/raw_building.py\"]",
+  "original_files_saved": "[\"astroid/raw_building.py\"]",
+  "patched_files_saved": "[\"astroid/raw_building.py\"]",
+  "status": "applied"
+}

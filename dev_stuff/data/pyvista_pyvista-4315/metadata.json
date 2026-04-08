@@ -1,0 +1,17 @@
+{
+  "instance_id": "pyvista__pyvista-4315",
+  "repo": "pyvista/pyvista",
+  "repo_url": "https://github.com/pyvista/pyvista.git",
+  "base_commit": "db6ee8dd4a747b8864caae36c5d05883976a3ae5",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pyvista_pyvista-4315\\apply_patch.log",
+  "problem_statement": "Rectilinear grid does not allow Sequences as inputs\n### Describe the bug, what's wrong, and what you expected.\r\n\r\nRectilinear grid gives an error when `Sequence`s are passed in, but `ndarray` are ok.\r\n\r\n### Steps to reproduce the bug.\r\n\r\nThis doesn't work\r\n```python\r\nimport pyvista as pv\r\npv.RectilinearGrid([0, 1], [0, 1], [0, 1])\r\n```\r\n\r\nThis works\r\n```py\r\nimport pyvista as pv\r\nimport numpy as np\r\npv.RectilinearGrid(np.ndarray([0, 1]), np.ndarray([0, 1]), np.ndarray([0, 1]))\r\n```\r\n### System Information\r\n\r\n```shell\r\n--------------------------------------------------------------------------------\r\n  Date: Wed Apr 19 20:15:10 2023 UTC\r\n\r\n                OS : Linux\r\n            CPU(s) : 2\r\n           Machine : x86_64\r\n      Architecture : 64bit\r\n       Environment : IPython\r\n        GPU Vendor : Mesa/X.org\r\n      GPU Renderer : llvmpipe (LLVM 11.0.1, 256 bits)\r\n       GPU Version : 4.5 (Core Profile) Mesa 20.3.5\r\n\r\n  Python 3.11.2 (main, Mar 23 2023, 17:12:29) [GCC 10.2.1 20210110]\r\n\r\n           pyvista : 0.38.5\r\n               vtk : 9.2.6\r\n             numpy : 1.24.2\r\n           imageio : 2.27.0\r\n            scooby : 0.7.1\r\n             pooch : v1.7.0\r\n        matplotlib : 3.7.1\r\n           IPython : 8.12.0\r\n--------------------------------------------------------------------------------\r\n```\r\n\r\n\r\n### Screenshots\r\n\r\n_No response_\n",
+  "changed_files": "[\"pyvista/core/grid.py\"]",
+  "original_files_saved": "[\"pyvista/core/grid.py\"]",
+  "patched_files_saved": "[\"pyvista/core/grid.py\"]",
+  "status": "applied"
+}

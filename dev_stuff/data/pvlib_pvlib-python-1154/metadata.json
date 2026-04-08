@@ -1,0 +1,17 @@
+{
+  "instance_id": "pvlib__pvlib-python-1154",
+  "repo": "pvlib/pvlib-python",
+  "repo_url": "https://github.com/pvlib/pvlib-python.git",
+  "base_commit": "0b8f24c265d76320067a5ee908a57d475cd1bb24",
+  "sample_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154",
+  "patch_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154\\patch.diff",
+  "problem_statement_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154\\problem_statement.txt",
+  "original_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154\\original",
+  "patched_dir": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154\\patched",
+  "apply_log_file": "D:\\Projects\\COMP691\\FlowGraphGen\\data\\pvlib_pvlib-python-1154\\apply_patch.log",
+  "problem_statement": "pvlib.irradiance.reindl() model generates NaNs when GHI = 0\n**Describe the bug**\r\nThe reindl function should give zero sky diffuse when GHI is zero. Instead it generates NaN or Inf values due to \"term3\" having a quotient that divides by GHI.  \r\n\r\n**Expected behavior**\r\nThe reindl function should result in zero sky diffuse when GHI is zero.\r\n\r\n\npvlib.irradiance.reindl() model generates NaNs when GHI = 0\n**Describe the bug**\r\nThe reindl function should give zero sky diffuse when GHI is zero. Instead it generates NaN or Inf values due to \"term3\" having a quotient that divides by GHI.  \r\n\r\n**Expected behavior**\r\nThe reindl function should result in zero sky diffuse when GHI is zero.\r\n\r\n\n",
+  "changed_files": "[\"pvlib/irradiance.py\"]",
+  "original_files_saved": "[\"pvlib/irradiance.py\"]",
+  "patched_files_saved": "[\"pvlib/irradiance.py\"]",
+  "status": "applied"
+}
