@@ -15,14 +15,14 @@ data/
 
 This script:
 1) reads metadata.csv
-2) loads the original code, patched code, gold patch, and problem statement
+2) loads the original code, patched code, gold patch
 3) asks the model for:
    - baseline patch directly from original code
    - graph representation from original code
    - regenerated code from that graph
    - patch from regenerated code
 4) saves JSONL predictions for harness use
-5) computes CodeBLEU on FULL FILES, not patches
+5) #TODO computes CodeBLEU on FULL FILES, not patches
 """
 
 from __future__ import annotations
@@ -303,7 +303,7 @@ ORIGINAL PYTHON CODE:
 
 
 # =========================
-# DIFF HANDLING
+# DIFF
 # =========================
 
 def extract_diff(text: str) -> Optional[str]:
@@ -408,7 +408,7 @@ def load_instance_from_row(row: pd.Series) -> dict:
 
 
 # =========================
-# MAIN PIPELINE
+# MAIN PART
 # =========================
 
 def process_instance(
@@ -548,8 +548,8 @@ def process_instance(
 def main():
     METADATA_CSV = "data/metadata.csv"
     OUTPUT_DIR = "outputs"
-    API_KEY = "KEY"  # or paste your key here
-    MAX_INSTANCES = 500  # e.g. 10 for debugging
+    API_KEY = "tgp_v1_qOfOANP5I0uryqxsuUsl3pAkedYxnqMtU8GKH8AQIEU"  # or paste your key here
+    MAX_INSTANCES = 500
 
     api_key = API_KEY or os.environ.get("GROQ_API_KEY")
     if not api_key:

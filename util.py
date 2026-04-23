@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 # def dig(repo):
 #     if ".py" in repo:
@@ -25,7 +26,22 @@ import matplotlib.pyplot as plt
 # print()
 # pass
 
-
-
-
+#
+# labels = ['baseline', 'call graph']
+#
+# baseline = [1, 0, 1, 1]
+# graph = [2, 1, 1, 1]
+#
+# data = [baseline, graph]
+# means = [np.mean(d) for d in data]
+# std_err = [np.std(d, ddof=1) / np.sqrt(len(d)) for d in data]
+# ci = [1.96 * se for se in std_err]
+#
+# plt.figure()
+# plt.bar(labels, means, yerr=ci, capsize=5)
+# plt.ylabel('Score')
+# plt.title('Mean with 95% Confidence Interval')
+# plt.ylim(0, 20)
+#
+# plt.show()
 
